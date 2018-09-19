@@ -1,18 +1,33 @@
 // miniprogram/pages/home/home.js
+
+var util = require('../../util/util.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+   
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (!wx.cloud){
+      wx.redirectTo({
+        url: '../chooseLib/chooseLib',
+      })
+      return
+    }
 
+   util.loadWxUserInfo().then((res) => {
+      console.info('load wx user info ok');
+    }, (res) => {
+      console.info('load wx user info error ${res}');
+      console.log(res);
+    })
+ 
   },
 
   /**

@@ -1,18 +1,42 @@
 // miniprogram/pages/center/index/index.js
+var util = require('../../../util/util.js');
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    avatarUrl: '../../../images/home/user-unlogin.png',
+    userInfo: {},
+    userName: 'Hi，你好！',
+    userInfoIsGetted: false
   },
+ 
 
+  onGetUserInfo: function(e){
+    if (!util.objectIsEmpty(e.detail.userInfo)){
+      util.setUserInfo(e.detail.userInfo);
+      this.setData({
+        avatarUrl: e.detail.userInfo.avatarUrl,
+        userInfo: e.detail.userInfo.avatarUrl,
+        userName: e.detail.userInfo.nickName,
+        userInfoIsGetted: true
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    if (util.getIsUpdateInfo()) {
+      this.setData({
+        avatarUrl: util.getAvatarUrl(),
+        userInfo: util.getUserInfo(),
+        userName: util.getUserInfo().nickName,
+        userInfoIsGetted: true,
+      })
+    }
   },
 
   /**
