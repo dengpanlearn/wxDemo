@@ -53,3 +53,42 @@ page{
   text-align: center;
 }
 
+.my-order{
+  width: 100%;
+  height: 70rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1rpx solid #746f6f;
+}
+
+.my-order .title{
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 30rpx;
+  margin-left: 20rpx;
+}
+
+.my-order .lookup{
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.my-order .lookup .title{
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 25rpx;
+  margin-right: 10rpx;
+  text-align: center;
+  color: #312e2e;
+}
+
+.my-order .lookup .icon{
+  width: 25rpx;
+  height: 25rpx;
+  margin-right: 20rpx;
+}
+
