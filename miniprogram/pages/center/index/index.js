@@ -10,7 +10,32 @@ Page({
     avatarUrl: '../../../images/home/user-unlogin.png',
     userInfo: {},
     userName: 'Hi，你好！',
-    userInfoIsGetted: false
+    userInfoIsGetted: false,
+    orderMenus:[
+      {
+        url: '../order/order',
+        icon: '../../../images/center/waitpay.png',
+        title: '待付款',
+      },
+
+      {
+        url: '../order/order',
+        icon: '../../../images/center/waitdelivery.png',
+        title: '待发货',
+      },
+
+      {
+        url: '../order/order',
+        icon: '../../../images/center/deliveryed.png',
+        title: '已发货',
+      },
+
+      {
+        url: '../order/order',
+        icon: '../../../images/center/payed.png',
+        title: '已付款',
+      }
+    ]
   },
  
 
@@ -24,6 +49,10 @@ Page({
         userInfoIsGetted: true
       })
     }
+  },
+
+  onLookupMyOder:function(e){
+
   },
   /**
    * 生命周期函数--监听页面加载

@@ -10,10 +10,11 @@
     "pages/deployFunctions/deployFunctions",
     "pages/chooseLib/chooseLib",
     "pages/center/index/index",
-   "pages/shopping/shopping",
+    "pages/shopping/shopping",
     "pages/sort/sort",
     "pages/topic/topic",
-    "pages/collect/collect"
+    "pages/collect/collect",
+    "pages/center/order/order"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -27,7 +28,7 @@
     "borderStyle": "white",
     "selectedColor": "#b4282d",
     "color": "#666",
-    "list": [     
+    "list": [
       {
         "pagePath": "pages/home/home",
         "iconPath": "images/main/ic_menu_home_nor.png",
@@ -60,7 +61,6 @@
       }
     ]
   },
-
   "networkTimeout": {
     "request": 10000,
     "downloadFile": 10000

@@ -8,12 +8,25 @@
   </view>
   <button type = 'primary' hidden='{{userInfoIsGetted}}' open-type='getUserInfo' lang='zh_CN'                bindgetuserinfo='onGetUserInfo' class='get-info'>获取用户信息</button>
 
-  <view class='my-order' bindtap='onLookupMyOder'>
-    <text class='title'>我的订单</text>
-    <view class='lookup'>
-      <text class='title'>查看全部订单</text>
-      <image class='icon' src='../../../images/center/go.png'></image>
+  <view class='my-order'>
+    <view class='my-order-content' bindtap='onLookupMyOder'>
+      <text class='title'>我的订单</text>
+      <view class='lookup'>
+        <text class='title'>查看全部订单</text>
+        <image class='icon' src='../../../images/center/go.png'></image>
+      </view>
     </view>
-  </view>
 
+    <view class='my-order-menu'>
+      <view class='menu' wx:for = "{{orderMenus}}">
+        <navigator  url="{{item.url}}">
+         <image class='icon' src="{{item.icon}}"></image>
+          <text class='title'> {{item.title}}</text>
+       </navigator>
+      </view>
+    
+    </view>
+
+    <view class='seprator'></view>
+  </view>
 </view>

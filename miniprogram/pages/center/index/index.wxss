@@ -55,6 +55,16 @@ page{
 
 .my-order{
   width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.my-order .my-order-content{
+  width: 100%;
   height: 70rpx;
   display: flex;
   flex-wrap: nowrap;
@@ -63,21 +73,21 @@ page{
   border-bottom: 1rpx solid #746f6f;
 }
 
-.my-order .title{
+.my-order .my-order-content .title{
   height: 70rpx;
   line-height: 70rpx;
   font-size: 30rpx;
   margin-left: 20rpx;
 }
 
-.my-order .lookup{
+.my-order .my-order-content .lookup{
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
 }
 
-.my-order .lookup .title{
+.my-order .my-order-content .lookup .title{
   height: 70rpx;
   line-height: 70rpx;
   font-size: 25rpx;
@@ -86,9 +96,50 @@ page{
   color: #312e2e;
 }
 
-.my-order .lookup .icon{
+.my-order .my-order-content .lookup .icon{
   width: 25rpx;
   height: 25rpx;
   margin-right: 20rpx;
 }
+
+.my-order .my-order-menu{
+  width: 100%;
+  height: 150rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.my-order .my-order-menu .menu{
+  width: 90rpx;
+  height: 98rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.my-order .my-order-menu .icon{
+  width: 75rpx;
+  height: 75rpx;
+}
+
+.my-order .my-order-menu .title{
+  width: 75rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  font-size: 30rpx;
+}
+
+
+.my-order .seprator{
+  width: 100%;
+  height: 20rpx;
+  margin-top: 20rpx;
+  background: #c5bebe;
+}
+
 
