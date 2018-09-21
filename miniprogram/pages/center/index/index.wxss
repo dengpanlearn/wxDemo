@@ -183,3 +183,39 @@ page{
 }
 
 
+.card{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  border-bottom: 20rpx solid #c5bebe;
+}
+
+.card .card-menu{
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1rpx solid #c5bebe;
+}
+
+.card .card-menu .title{
+  width: auto;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  font-size: 40rpx;
+  margin-left: 20rpx;
+}
+
+.card  .card-menu .icon{
+  width: 40rpx;
+  height: 40rpx;
+   margin-right: 20rpx;
+}
+

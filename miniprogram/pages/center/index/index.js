@@ -11,6 +11,38 @@ Page({
     userInfo: {},
     userName: 'Hi，你好！',
     userInfoIsGetted: false,
+    userCars:[
+      {
+       title:'我的会员卡',
+       pages:'../vipCard/vipCard'
+      },
+      {
+        title: '我的返现',
+        pages: '../vipCard/vipCard'
+      },
+      {
+        title: '我的礼品卡',
+        pages: '../vipCard/vipCard'
+      },
+      {
+        title: '我的积分',
+        pages: '../vipCard/vipCard'
+      },
+      {
+        title: '我的优惠卷',
+        pages: '../vipCard/vipCard'
+      },
+      {
+        title: '我的优惠码',
+        pages: '../vipCard/vipCard'
+      },
+
+      {
+        title: '我的礼物',
+        pages: '../vipCard/vipCard'
+      }
+      ],
+
     orderMenus:[
       {
         url: '../order/order',
@@ -58,6 +90,11 @@ Page({
   onEnterShopping: function(e){
 
   },
+
+  onEnterVip: function(e){
+
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
