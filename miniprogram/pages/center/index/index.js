@@ -54,6 +54,10 @@ Page({
   onLookupMyOder:function(e){
 
   },
+
+  onEnterShopping: function(e){
+
+  },
   /**
    * 生命周期函数--监听页面加载
    */

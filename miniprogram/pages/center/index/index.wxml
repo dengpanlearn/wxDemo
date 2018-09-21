@@ -29,4 +29,13 @@
 
     <view class='seprator'></view>
   </view>
+
+  <view class='shopping' >
+    <view class='menu' bindtap='onEnterShopping'>
+      <text class='title'>购物车</text>
+      <image class='icon' src='../../../images/center/go.png'></image>
+    </view>
+
+    <view class='seprator'></view>
+  </view>
 </view>
