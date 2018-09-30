@@ -10,3 +10,5 @@
 
 - [云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
 
+appId wx4fa417c55ccc8c93
+secretId f6a008cab77ada27c16a9d2b0ab6c9be
