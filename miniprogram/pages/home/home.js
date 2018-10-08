@@ -1,6 +1,7 @@
 // miniprogram/pages/home/home.js
 
 var util = require('../../util/util.js');
+
 Page({
 
   /**
@@ -9,6 +10,8 @@ Page({
   data: {
    
   },
+
+
 
   /**
    * 生命周期函数--监听页面加载
@@ -21,8 +24,15 @@ Page({
       return
     }
 
+
+
    util.loadWxUserInfo().then((res) => {
       console.info('load wx user info ok');
+
+     util.registerUser().then(res =>{
+       console.log('register ok');
+
+     })
     }, (res) => {
       console.info('load wx user info error ${res}');
       console.log(res);

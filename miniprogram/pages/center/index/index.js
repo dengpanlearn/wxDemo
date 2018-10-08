@@ -76,7 +76,7 @@ Page({
       util.setUserInfo(e.detail.userInfo);
       this.setData({
         avatarUrl: e.detail.userInfo.avatarUrl,
-        userInfo: e.detail.userInfo.avatarUrl,
+        userInfo: e.detail.userInfo,
         userName: e.detail.userInfo.nickName,
         userInfoIsGetted: true
       })

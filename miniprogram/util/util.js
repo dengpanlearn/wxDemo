@@ -30,6 +30,35 @@ function setUserInfo(info) {
   return userInfo = info;
 }
 
+function registerUser(){
+  return new Promise(function(resolve, reject){
+    wx.cloud.callFunction({
+      name: 'registerUser',
+      data: {
+        userName: userInfo.nickName,
+        gender: userInfo.gender,
+        city: userInfo.city,
+        province: userInfo.province,
+        country: userInfo.country,
+      }
+    }).then(res => {
+      if (res.result.code == 0) { 
+        console.log(res.result.data);
+        return {
+      code: 0,
+      data: 0
+    }
+        logged = true;
+        resolve(logged);
+      }else {
+        reject(logged);
+      } 
+    }).catch(res => {
+      reject(res);
+    })
+  })
+}
+// get wx userInfo
 function loadWxUserInfo(){
   return new Promise(function(resovle, reject){
     wx.login({
@@ -95,4 +124,5 @@ module.exports = {
   getIsLogged,
   loadWxUserInfo,
   objectIsEmpty,
+  registerUser
 }
