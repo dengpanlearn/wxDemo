@@ -1,1 +1,90 @@
 /* miniprogram/pages/sort/sort.wxss */
+
+
+.container{
+  width: 100%;
+  height: 100%;
+  background: #f4f4f4;
+}
+
+.top-class{
+  position: fixed;
+  top: 0rpx;
+  left: 0rpx;
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  background: #e7e7e7;
+}
+::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.top-class .commodity-class{
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 35rpx;
+}
+.top-class .hover-commodity-class{
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 35rpx;
+  background: #f4f4f4;
+}
+
+.top-class .select-commodity-class{
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 35rpx;
+  background: #f4f4f4;
+}
+
+.top-type{
+  position: fixed;
+  top: 0rpx;
+  left: 30%;
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content:flex-start;
+}
+
+.top-type .type-item{
+ 
+  width: 25%;
+  height: 110rpx;
+  display: flex;
+  flex-direction: column;
+  
+  justify-content: space-around;
+  align-items: center;
+  margin: 20rpx  20rpx  20rpx  20rpx;
+}
+
+.type-item .type-icon{
+  width: 100%;
+  height: 75rpx;
+}
+
+ .type-item .type-title{
+  width: 100%;
+  height: 25rpx;
+  line-height: 25rpx;
+  font-size: 20rpx;
+  text-align: center;
+}

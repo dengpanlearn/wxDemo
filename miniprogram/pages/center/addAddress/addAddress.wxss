@@ -1,0 +1,162 @@
+/* miniprogram/pages/center/addAddress/addAddress.wxss */
+.container{
+  width: 100%;
+  height: auto;
+  background: #f4f4f4;
+}
+
+.name{
+  width: 100%;
+  height: 75rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  border-top: 1rpx solid #c5bebe;
+  border-bottom: 1rpx solid #c5bebe;
+}
+
+.name .name-title{
+  width: 30%;
+  height: 75rpx;
+  line-height: 75rpx;
+  font-size: 35rpx;
+  text-align: left;
+}
+
+.name .name-input{
+  width: 70%;
+  height: 75rpx;
+  line-height: 75rpx;
+  font-size: 35rpx;
+  text-align: left;
+  color: #c5bebe
+}
+
+.phone{
+  width: 100%;
+  height: 75rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  border-top: 1rpx solid #c5bebe;
+  border-bottom: 1rpx solid #c5bebe;
+}
+
+.phone .phone-title{
+  width: 30%;
+  height: 75rpx;
+  line-height: 75rpx;
+  font-size: 35rpx;
+  text-align: left;
+}
+
+.phone .phone-input{
+   width: 70%;
+  height: 75rpx;
+  line-height: 75rpx;
+  font-size: 35rpx;
+  text-align: left;
+  color: #c5bebe
+}
+
+
+.address{
+  width: 100%;
+  height: 75rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  border-top: 1rpx solid #c5bebe;
+  border-bottom: 1rpx solid #c5bebe;
+}
+
+.address .address-title{
+   width: 30%;
+  height: 75rpx;
+  line-height: 75rpx;
+  font-size: 35rpx;
+  text-align: left;
+}
+
+.address .address-input{
+   width: 70%;
+  height: 75rpx;
+  line-height: 75rpx;
+  font-size: 35rpx;
+  text-align: left;
+  color: #c5bebe
+}
+
+.house{
+  width: 100%;
+  height: 75rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  border-top: 1rpx solid #c5bebe;
+  border-bottom: 1rpx solid #c5bebe;
+}
+
+.house .house-title{
+   width: 30%;
+  height: 75rpx;
+  line-height: 75rpx;
+  font-size: 35rpx;
+  text-align: left;
+}
+
+.house .house-input{
+   width: 70%;
+  height: 75rpx;
+  line-height: 75rpx;
+  font-size: 35rpx;
+  text-align: left;
+  color: #c5bebe
+}
+
+
+.type{
+  width: 100%;
+  height: 75rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  border-top: 1rpx solid #c5bebe;
+  border-bottom: 1rpx solid #c5bebe;
+}
+
+.type .type-title{
+  width: 30%;
+  height: 75rpx;
+  line-height: 75rpx;
+  font-size: 35rpx;
+  text-align: left;
+}
+
+.type .type-group{
+  width: 70%;
+  height: 75rpx;
+   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.type .type-group .type-item{
+  width: 200rpx;
+  height: 75rpx;
+  line-height: 75rpx;
+  font-size: 35rpx;
+  text-align: center;
+}

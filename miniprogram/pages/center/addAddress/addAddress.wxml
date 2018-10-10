@@ -1,0 +1,31 @@
+<!--miniprogram/pages/center/addAddress/addAddress.wxml-->
+<form class='container' bindsubmit='onSave'>
+  <view class='name'>
+    <text class='name-title'>收货人</text>
+    <input class='name-input' value='收货人姓名'> </input>
+  </view>
+  <view class='phone'>
+    <text class='phone-title'>收货人手机</text>
+    <input class='phone-input' type='number' value='手机号码'> </input>
+  </view>
+
+  <view class='address'>
+    <text class='address-title'>收货地址</text>
+    <input class='address-input' type='number' value='地址'> </input>
+  </view>
+
+  <view class='house'>
+    <text class='house-title'>小区地址</text>
+    <input class='house-input' type='number' value='小区名称'> </input>
+  </view>
+
+  <view class='type'>
+    <text class='type-title'>类型</text>
+    <radio-group class='type-group'>
+      <radio class='type-item' wx:for='{{addressType}}' wx:key='typeName' value='{{item.typeName}}' checked='{{item.enable}}'>{{item.typeName}}</radio>
+    </radio-group>
+  </view>
+
+  <button class='save' form-type='submit'>保存并使用</button>
+</form> 
+

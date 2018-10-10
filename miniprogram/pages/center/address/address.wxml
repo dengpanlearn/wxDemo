@@ -1,0 +1,20 @@
+<!--miniprogram/pages/center/address/address.wxml-->
+<view class='container'>
+  <scroll-view class='address-list' scroll-y >
+    <scroll-view class='address-item' scroll-x wx:for='{{addresslist}}' wx:key='id'>
+      <view class='address-value'>
+        <view class='address-title'>
+          <text class='address-name'></text> 
+          <text class='address-phone'></text>
+          <image class='addres-flag'></image>
+        </view>
+        <view class='address-detail'></view>
+       
+      </view>
+     <image class='modify'></image>
+     <image class='delete'></image>
+    </scroll-view>
+  </scroll-view>
+
+  <button class='address-add' type='primary' bindtap='onAddAddress'>新增地址</button>
+</view>

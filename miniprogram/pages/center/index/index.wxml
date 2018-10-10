@@ -18,11 +18,11 @@
     </view>
 
     <view class='my-order-menu'>
-      <view class='menu' wx:for = "{{orderMenus}}">
-        <navigator  url="{{item.url}}">
+      <view class='menu' wx:for = "{{orderMenus}}" wx:key='id' bindtap='onLookupOrderMenu' id='{{item.id}}'>
+        <view  url="{{item.url}}">
          <image class='icon' src="{{item.icon}}"></image>
           <text class='title'> {{item.title}}</text>
-       </navigator>
+       </view>
       </view>
     
     </view>
@@ -44,6 +44,8 @@
       <text class='title'>{{item.title}}</text>
       <image class='icon' src='../../../images/center/go.png'></image>
     </navigator>
+
+  
   </view>
 
 

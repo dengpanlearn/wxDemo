@@ -5,7 +5,96 @@ Page({
    * 页面的初始数据
    */
   data: {
+    curClassId: 'type1',
+    commodityClass:[{
+        id: 'type1',
+        name: '果园优选'
+      },
+      {
+        id: 'type2',
+        name: '新鲜水果'
+      },
+    
+      {
+        id: 'type3',
+        name: '水产海鲜'
+      },
+      {
+        id: 'type4',
+        name: '肉禽蛋类'
+      },
+      {
+        id: 'type5',
+        name: '乳品速食'
+      },
 
+      {
+        id: 'type6',
+        name: '时令鲜蔬'
+      },
+
+      {
+        id: 'type7',
+        name: '时令鲜蔬'
+      },
+      {
+        id: 'type8',
+        name: '时令鲜蔬'
+      },
+
+      {
+        id: 'type9',
+        name: '时令鲜蔬'
+      },
+
+      {
+        id: 'type10',
+        name: '时令鲜蔬'
+      },
+
+
+      {
+        id: 'type11',
+        name: '时令鲜蔬'
+      },
+
+      {
+        id: 'type12',
+        name: '时令鲜蔬'
+      }
+    ],
+    commodityType:[
+      {
+        id:'a',
+        url:'../../images/center/apple.png',
+        name:'苹果'
+      },
+
+      {
+        id:'b',
+        url: '../../images/center/apple.png',
+        name: '苹果'
+      },
+
+      {
+        id:'c',
+        url: '../../images/center/apple.png',
+        name: '苹果'
+      },
+
+      {
+        id: 'd',
+        url: '../../images/center/apple.png',
+        name: '苹果'
+      }
+    ]
+  },
+
+  onViewClass:function(opt){
+    console.log(opt);
+    this.setData({
+      curClassId: opt.currentTarget.id
+    })
   },
 
   /**

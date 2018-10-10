@@ -1,0 +1,21 @@
+/* miniprogram/pages/center/address/address.wxss */
+
+.container{
+  width: 100%;
+  height: 100%;
+  background: #f4f4f4;
+}
+
+.address-list{
+  width: 100%;
+  height: 100%-75rpx;
+}
+
+.address-add{
+  width: 100%;
+  height: 75rpx;
+  line-height: 75rpx;
+  text-align: center;
+  position: absolute;
+  bottom: 1rpx;
+}

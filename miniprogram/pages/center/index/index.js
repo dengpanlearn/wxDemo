@@ -45,28 +45,40 @@ Page({
 
     orderMenus:[
       {
+        id:'0',
         url: '../order/order',
         icon: '../../../images/center/waitpay.png',
         title: '待付款',
       },
 
       {
+        id: '1',
         url: '../order/order',
         icon: '../../../images/center/waitdelivery.png',
         title: '待发货',
       },
 
       {
+        id:'2',
         url: '../order/order',
         icon: '../../../images/center/deliveryed.png',
         title: '已发货',
       },
 
       {
+        id: '3',
         url: '../order/order',
         icon: '../../../images/center/payed.png',
         title: '已付款',
+      },
+
+      {
+        id: '4',
+        url: '../address/address',
+        icon: '../../../images/center/address.png',
+        title: '地址',
       }
+
     ]
   },
  
@@ -85,6 +97,50 @@ Page({
 
   onLookupMyOder:function(e){
 
+  },
+
+  onLookupOrderMenu:function(e){
+    console.log(e);
+    let curId = e.currentTarget.id;
+    let length =this.data.orderMenus.length;
+    for (let i = 0; i < length; i++){
+      if (this.data.orderMenus[i].id == curId){
+        console.log(this.data.orderMenus[i]);
+        if (i < 4){
+          wx.navigateTo({
+            url: this.data.orderMenus[i].url,
+          })
+        }else{
+          wx.authorize({
+            scope: 'scope.address',
+
+            success: function () {
+              wx.chooseAddress({
+                success: res => {
+                 console.log(res);
+
+                },
+                fail: res => {
+                  wx.showToast({
+                    title: '地址选择错误',
+                    duration: 2000
+                  });
+                  console.log(res);
+                }
+              })
+            },
+            fail: function () {
+              wx.showToast({
+                title: '请容许添加地址',
+                duration: 2000
+              })
+            }
+          })
+
+
+        }
+      }
+    }
   },
 
   onEnterShopping: function(e){

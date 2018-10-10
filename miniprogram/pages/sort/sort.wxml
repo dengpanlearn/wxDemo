@@ -1,2 +1,21 @@
 <!--miniprogram/pages/sort/sort.wxml-->
-<text>miniprogram/pages/sort/sort.wxml</text>
+<view class='container'>
+
+   <scroll-view  class='top-class' scroll-y='true' scroll-top='20'>
+    <view  wx:for='{{commodityClass}}' wx:key='id' bindtap='onViewClass' id='{{item.id}}'
+    class="{{curClassId==item.id? 'select-commodity-class':'commodity-class'}}">{{item.name}}</view>
+  </scroll-view>
+  
+
+
+  <view  class='top-type' >
+    <view class='type-item' wx:for ='{{commodityType}}' wx:key='id'>
+      <image class='type-icon' src='{{item.url}}'></image>
+      <text class='type-title'>{{item.name}}</text>
+    </view>
+    
+
+  </view>
+
+
+</view>
