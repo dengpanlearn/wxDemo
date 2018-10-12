@@ -24,9 +24,9 @@
 
 .commodity-type .type-item{
   display: inline-block;
-  width: 120rpx;
-  height: 60rpx;
-  line-height: 60rpx;
+  width: auto;
+  height: 59rpx;
+  line-height: 59rpx;
   font-size: 30rpx;
   text-align: center;
    margin-left: 20rpx;
@@ -36,15 +36,15 @@
 
 .commodity-type .type-item-select{
   display: inline-block;
-  width: 120rpx;
-  height: 60rpx;
-  line-height: 60rpx;
+  width: auto;
+  height: 59rpx;
+  line-height: 59rpx;
   font-size: 30rpx;
   text-align: center;
    margin-left: 20rpx;
    margin-right: 20rpx;
-  color: #a9f792;
-  border-bottom: 1rpx solid #a9f792;
+  color: #3cff00;
+  border-bottom: 1rpx solid #3cff00;
 }
 
 .commodity-list{
