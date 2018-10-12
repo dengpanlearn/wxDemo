@@ -41,7 +41,6 @@ Page({
    */
   onLoad: function (options) {
     utilService.loadCommodityClass().then(res =>{
-      console.log(res);
       if (res.length != 0){
 
         this.setData({
@@ -51,9 +50,8 @@ Page({
 
         utilService.loadCommodityType(res[0]._id).then(res => {
           if (res.length != 0) {
-            console.log(res);
+      
             this.setData({
-
               commodityType: res
             })
           }
@@ -61,6 +59,14 @@ Page({
 
       }
     
+    })
+  },
+
+  onEnterType:function(opt){
+    let urlNext = '../commodityList/commodityList?typeId=' + opt.currentTarget.id;
+    urlNext = urlNext + '&classId=' + this.data.curClassId;
+    wx.redirectTo({
+      url: urlNext,
     })
   },
 

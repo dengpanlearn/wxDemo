@@ -1,0 +1,10 @@
+<!--miniprogram/pages/commodityList/commodityList.wxml-->
+<view class='container'>
+  <scroll-view class='commodity-type' scroll-x='true'>
+    <view class="{{currentTypeId==item._id? 'type-item-select':'type-item'}}" bindtap='onSelectType'    wx:for='{{commodityType}}' wx:key='id' id='{{item._id}}'>{{item.name}}</view>
+  </scroll-view>
+
+  <view class='commodity-list'>
+  
+  </view>
+</view>

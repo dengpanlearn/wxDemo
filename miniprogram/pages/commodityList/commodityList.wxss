@@ -1,0 +1,56 @@
+/* miniprogram/pages/commodityList/commodityList.wxss */
+
+
+.container{
+  width: 100%;
+  height: 100%;
+  background: #f4f4f4;
+}
+
+.commodity-type{
+  position: fixed;
+   top: 0rpx;
+  left: 0rpx;
+  width: 100%;
+  height: 60rpx;
+  display: flex;
+  flex-direction: row;
+
+  justify-content: flex-start;
+  align-items: center;
+  white-space: nowrap;
+  border-bottom: 1rpx solid #eeecec;
+}
+
+.commodity-type .type-item{
+  display: inline-block;
+  width: 120rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 30rpx;
+  text-align: center;
+   margin-left: 20rpx;
+   margin-right: 20rpx;
+   border-bottom: 1rpx solid #eeecec;
+}
+
+.commodity-type .type-item-select{
+  display: inline-block;
+  width: 120rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 30rpx;
+  text-align: center;
+   margin-left: 20rpx;
+   margin-right: 20rpx;
+  color: #a9f792;
+  border-bottom: 1rpx solid #a9f792;
+}
+
+.commodity-list{
+  position: fixed;
+  top: 80rpx;
+  left: 0rpx;
+  width: 100%;
+  height: 100%-80rpx;
+}

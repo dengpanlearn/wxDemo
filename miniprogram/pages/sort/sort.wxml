@@ -9,7 +9,7 @@
 
 
   <view  class='top-type' >
-    <view class='type-item' wx:for ='{{commodityType}}' wx:key='id' id='{{item._id}}'>
+    <view class='type-item' hover-class='typer-item-hover' wx:for ='{{commodityType}}' wx:key='id' id='{{item._id}}' bindtap='onEnterType'>
       <image class='type-icon' src='{{item.fileId}}'></image>
       <text class='type-title'>{{item.name}}</text>
     </view>
