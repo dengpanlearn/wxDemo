@@ -35,7 +35,12 @@ exports.main = async (event, context) => {
 
   let openId = userInfo.openId; 
   let appId = userInfo.appId;
- 
+
+  return {
+    code: 0,
+    data: appId
+  }
+ /*
   try{
 
     const val = await getUserId({ 
@@ -56,6 +61,8 @@ exports.main = async (event, context) => {
       data: e
     }
   }
+
+  */
 }
 
 

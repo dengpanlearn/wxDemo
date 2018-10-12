@@ -1,92 +1,17 @@
 // miniprogram/pages/sort/sort.js
+
+var utilService = require('../../util/service.js')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    curClassId: 'type1',
-    commodityClass:[{
-        id: 'type1',
-        name: '果园优选'
-      },
-      {
-        id: 'type2',
-        name: '新鲜水果'
-      },
-    
-      {
-        id: 'type3',
-        name: '水产海鲜'
-      },
-      {
-        id: 'type4',
-        name: '肉禽蛋类'
-      },
-      {
-        id: 'type5',
-        name: '乳品速食'
-      },
-
-      {
-        id: 'type6',
-        name: '时令鲜蔬'
-      },
-
-      {
-        id: 'type7',
-        name: '时令鲜蔬'
-      },
-      {
-        id: 'type8',
-        name: '时令鲜蔬'
-      },
-
-      {
-        id: 'type9',
-        name: '时令鲜蔬'
-      },
-
-      {
-        id: 'type10',
-        name: '时令鲜蔬'
-      },
-
-
-      {
-        id: 'type11',
-        name: '时令鲜蔬'
-      },
-
-      {
-        id: 'type12',
-        name: '时令鲜蔬'
-      }
+    curClassId: '',
+    commodityClass:[
     ],
     commodityType:[
-      {
-        id:'a',
-        url:'../../images/center/apple.png',
-        name:'苹果'
-      },
-
-      {
-        id:'b',
-        url: '../../images/center/apple.png',
-        name: '苹果'
-      },
-
-      {
-        id:'c',
-        url: '../../images/center/apple.png',
-        name: '苹果'
-      },
-
-      {
-        id: 'd',
-        url: '../../images/center/apple.png',
-        name: '苹果'
-      }
     ]
   },
 
@@ -95,20 +20,55 @@ Page({
     this.setData({
       curClassId: opt.currentTarget.id
     })
+
+    utilService.loadCommodityType(opt.currentTarget.id).then(res =>{
+      if (res.length != 0){
+        console.log(res);
+        this.setData({
+
+        commodityType: res
+       })
+      } else {
+        this.setData({
+          commodityType: []
+        })
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    utilService.loadCommodityClass().then(res =>{
+      console.log(res);
+      if (res.length != 0){
 
+        this.setData({
+          curClassId: res[0]._id,
+          commodityClass: res,
+        });
+
+        utilService.loadCommodityType(res[0]._id).then(res => {
+          if (res.length != 0) {
+            console.log(res);
+            this.setData({
+
+              commodityType: res
+            })
+          }
+        })
+
+      }
+    
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**

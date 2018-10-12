@@ -15,9 +15,7 @@
     "pages/topic/topic",
     "pages/collect/collect",
     "pages/center/order/order",
-    "pages/center/vipCard/vipCard",
-    "pages/center/address/address",
-    "pages/center/addAddress/addAddress"
+    "pages/center/vipCard/vipCard"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

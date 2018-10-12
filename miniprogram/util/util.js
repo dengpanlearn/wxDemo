@@ -60,6 +60,46 @@ function registerUser(){
 }
 // get wx userInfo
 function loadWxUserInfo(){
+
+  return new Promise(function (resovle, reject){
+    wx.cloud.callFunction({
+      name: 'getUserId',
+      data: {
+        secret: 'f6a008cab77ada27c16a9d2b0ab6c9be',
+        code: 'appCode'
+      }
+    }).then(res =>{
+      if (res.result.code == 0) {
+        console.log('user open id:' + res.result.data);
+        wx.getSetting({
+          success: res => {
+            if (res.authSetting['scope.userInfo']) {
+              wx.getUserInfo({
+                success: res => {
+                  userInfo = res.userInfo;
+                  resovle(res);
+                },
+                fail: res => {
+                  reject(res);
+                }
+              })
+            } else {
+              reject(res);
+            }
+
+          },
+          fail: res => {
+            reject(res);
+          }
+        });
+      } else {
+        reject(res.result.data);
+      }
+    }).catch(res =>{
+      reject(res);
+    })
+  })
+  /*通过云函数可以直接获取到openId,暂时不用获取unionId
   return new Promise(function(resovle, reject){
     wx.login({
       success: res=>{
@@ -113,7 +153,7 @@ function loadWxUserInfo(){
       }
     })
    
-  })
+  })*/
 }
 
 module.exports = {
