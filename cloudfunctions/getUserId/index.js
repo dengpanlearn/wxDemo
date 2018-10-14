@@ -35,34 +35,11 @@ exports.main = async (event, context) => {
 
   let openId = userInfo.openId; 
   let appId = userInfo.appId;
-  /**从数据库获取用户userInfo*/
 
-  try{
-    const db = cloud.database();
-    const collection = db.collection('demo-user');
-    let result = await collection.where({
-      openId: openId
-    }).get();
-
-    if (result.data.length != 0) {
-      return {
-        code: 0,
-        data:result.data
-      }
-    }else{
-      return {
-        code:-1,
-        data:[]
-      };
-    }
-
-  }catch(err){
-    return {
-      code:-1,
-      data:err
-    };
+  return {
+    code: 0,
+    data: appId
   }
-
  /*
   try{
 

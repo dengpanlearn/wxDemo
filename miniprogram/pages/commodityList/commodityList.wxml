@@ -5,7 +5,7 @@
   </scroll-view>
 
   <scroll-view class='commodity-list' scroll-y='true'>
-    
+   
     <view class='commodity-item' wx:for ='{{commodityList}}' wx:key='title' id='{{item.title}}'>
   
       <view class='commodity-image-top'>
@@ -23,6 +23,6 @@
       </view>
    
   </scroll-view> 
-  
+ 
   
 </view>
