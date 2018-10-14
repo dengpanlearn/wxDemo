@@ -26,9 +26,7 @@ function getIsUpdateInfo() {
   return !objectIsEmpty(userInfo);
 }
 
-function setUserInfo(info) {
-  return userInfo = info;
-}
+
 
 function registerUser(){
   return new Promise(function(resolve, reject){
@@ -40,14 +38,12 @@ function registerUser(){
         city: userInfo.city,
         province: userInfo.province,
         country: userInfo.country,
+        avatarUrl: userInfo.avatarUrl,
+        language: userInfo.language
       }
     }).then(res => {
       if (res.result.code == 0) { 
         console.log(res.result.data);
-        return {
-      code: 0,
-      data: 0
-    }
         logged = true;
         resolve(logged);
       }else {
@@ -57,6 +53,10 @@ function registerUser(){
       reject(res);
     })
   })
+}
+
+function setUserInfo(info) {
+  userInfo = info;
 }
 // get wx userInfo
 function loadWxUserInfo(){
@@ -70,35 +70,23 @@ function loadWxUserInfo(){
       }
     }).then(res =>{
       if (res.result.code == 0) {
-        console.log('user open id:' + res.result.data);
-        wx.getSetting({
-          success: res => {
-            if (res.authSetting['scope.userInfo']) {
-              wx.getUserInfo({
-                success: res => {
-                  userInfo = res.userInfo;
-                  resovle(res);
-                },
-                fail: res => {
-                  reject(res);
-                }
-              })
-            } else {
-              reject(res);
-            }
-
-          },
-          fail: res => {
-            reject(res);
-          }
-        });
-      } else {
-        reject(res.result.data);
+        console.log(res.result.data);
+        let serverUserInfo = res.result.data[0];
+        userInfo.nickName = serverUserInfo.userName;
+        userInfo.gender = serverUserInfo.gender;
+        userInfo.country = serverUserInfo.country;
+        userInfo.province = serverUserInfo.province;
+        userInfo.city = serverUserInfo.city;
+        userInfo.language = serverUserInfo.language;
+        userInfo.avatarUrl = serverUserInfo.avatarUrl;
       }
-    }).catch(res =>{
+    }).catch(res=>{
       reject(res);
-    })
-  })
+    });
+  });
+  
+    
+           
   /*通过云函数可以直接获取到openId,暂时不用获取unionId
   return new Promise(function(resovle, reject){
     wx.login({

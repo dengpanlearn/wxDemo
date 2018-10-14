@@ -86,12 +86,20 @@ Page({
   onGetUserInfo: function(e){
     if (!util.objectIsEmpty(e.detail.userInfo)){
       util.setUserInfo(e.detail.userInfo);
-      this.setData({
-        avatarUrl: e.detail.userInfo.avatarUrl,
-        userInfo: e.detail.userInfo,
-        userName: e.detail.userInfo.nickName,
-        userInfoIsGetted: true
-      })
+
+      util.registerUser().then((res) =>{
+        this.setData({
+          avatarUrl: e.detail.userInfo.avatarUrl,
+          userInfo: e.detail.userInfo,
+          userName: e.detail.userInfo.nickName,
+          userInfoIsGetted: true
+        })
+      }).catch(err=>{
+        console.log(err);
+      });
+        
+      
+     
     }
   },
 
@@ -155,14 +163,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (util.getIsUpdateInfo()) {
-      this.setData({
-        avatarUrl: util.getAvatarUrl(),
-        userInfo: util.getUserInfo(),
-        userName: util.getUserInfo().nickName,
-        userInfoIsGetted: true,
-      })
-    }
+   
   },
 
   /**
@@ -176,7 +177,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if (util.getIsUpdateInfo()) {
+      this.setData({
+        avatarUrl: util.getAvatarUrl(),
+        userInfo: util.getUserInfo(),
+        userName: util.getUserInfo().nickName,
+        userInfoIsGetted: true,
+      })
+    }
   },
 
   /**

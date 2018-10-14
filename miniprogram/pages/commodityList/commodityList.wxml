@@ -1,10 +1,28 @@
 <!--miniprogram/pages/commodityList/commodityList.wxml-->
 <view class='container'>
-  <scroll-view class='commodity-type' scroll-x='true'>
+  <scroll-view class='commodity-type' scroll-x='true' scroll-into-view='{{currentTypeId}}'>
     <view class="{{currentTypeId==item._id? 'type-item-select':'type-item'}}" bindtap='onSelectType'    wx:for='{{commodityType}}' wx:key='id' id='{{item._id}}'>{{item.name}}</view>
   </scroll-view>
 
-  <view class='commodity-list'>
+  <scroll-view class='commodity-list' scroll-y='true'>
+    
+    <view class='commodity-item' wx:for ='{{commodityList}}' wx:key='title' id='{{item.title}}'>
   
-  </view>
+      <view class='commodity-image-top'>
+       <image class='commodity-image' src='{{item.fileId}}'></image>
+      </view>
+        <view class= 'commodity-desc'>
+         <view class='commodity-title'>{{item.title}}</view>
+         <view class='commodity-feature'>{{item.feature}}</view>
+         <view class='commodity-price-feature'>{{item.priceFeature}}</view>
+          <view class='commodity-order'>
+            <view class='commodity-price'>{{item.price}}</view>
+            <image class ='commodity-order-image' src='../../images/add.png'></image>
+          </view>
+        </view>
+      </view>
+   
+  </scroll-view> 
+  
+  
 </view>
