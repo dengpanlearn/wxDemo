@@ -27,7 +27,6 @@ function getIsUpdateInfo() {
 }
 
 
-
 function registerUser(){
   return new Promise(function(resolve, reject){
     wx.cloud.callFunction({
@@ -42,6 +41,7 @@ function registerUser(){
         language: userInfo.language
       }
     }).then(res => {
+      console.log(res.result);
       if (res.result.code == 0) { 
         console.log(res.result.data);
         logged = true;

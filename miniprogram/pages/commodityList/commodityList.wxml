@@ -1,12 +1,12 @@
 <!--miniprogram/pages/commodityList/commodityList.wxml-->
 <view class='container'>
   <scroll-view class='commodity-type' scroll-x='true' scroll-into-view='{{currentTypeId}}'>
-    <view class="{{currentTypeId==item._id? 'type-item-select':'type-item'}}" bindtap='onSelectType'    wx:for='{{commodityType}}' wx:key='id' id='{{item._id}}'>{{item.name}}</view>
+    <view class="{{currentTypeId==item._id? 'type-item-select':'type-item'}}" bindtap='onSelectType'    wx:for='{{commodityType}}' wx:key='_id' id='{{item._id}}'>{{item.name}}</view>
   </scroll-view>
 
   <scroll-view class='commodity-list' scroll-y='true'>
    
-    <view class='commodity-item' wx:for ='{{commodityList}}' wx:key='title' id='{{item.title}}'>
+    <view class='commodity-item' wx:for ='{{commodityList}}' wx:key='_id' id='{{item._id}}'>
   
       <view class='commodity-image-top'>
        <image class='commodity-image' src='{{item.fileId}}'></image>

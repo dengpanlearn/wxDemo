@@ -8,59 +8,11 @@ Page({
    * 页面的初始数据
    */
   data: {
+    curClassId:'',
     commodityType:[],
     currentTypeId:'',
 
     commodityList:[
-      {
-        fileId:'../../images/tmp.png',
-        title:'佳沛新西兰绿奇异果(巨无霸)1',
-        feature:'清新绿果 酸甜多汁',
-        priceFeature:'22个/单只5.82元',
-        price:'¥128'
-      },
-      {
-        fileId: '../../images/tmp.png',
-        title: '佳沛新西兰绿奇异果(巨无霸)2',
-        feature: '清新绿果 酸甜多汁',
-        priceFeature: '22个/单只5.82元',
-        price: '¥128'
-      },
-      {
-        fileId: '../../images/tmp.png',
-        title: '佳沛新西兰绿奇异果(巨无霸)3',
-        feature: '清新绿果 酸甜多汁',
-        priceFeature: '22个/单只5.82元',
-        price: '¥128'
-      },
-      {
-        fileId: '../../images/tmp.png',
-        title: '佳沛新西兰绿奇异果(巨无霸)4',
-        feature: '清新绿果 酸甜多汁',
-        priceFeature: '22个/单只5.82元',
-        price: '¥128'
-      },
-      {
-        fileId: '../../images/tmp.png',
-        title: '佳沛新西兰绿奇异果(巨无霸)5',
-        feature: '清新绿果 酸甜多汁',
-        priceFeature: '22个/单只5.82元',
-        price: '¥128'
-      },
-      {
-        fileId: '../../images/tmp.png',
-        title: '佳沛新西兰绿奇异果(巨无霸)6',
-        feature: '清新绿果 酸甜多汁',
-        priceFeature: '22个/单只5.82元',
-        price: '¥128'
-      },
-      {
-        fileId: '../../images/tmp.png',
-        title: '佳沛新西兰绿奇异果(巨无霸)7',
-        feature: '清新绿果 酸甜多汁',
-        priceFeature: '22个/单只5.82元',
-        price: '¥128'
-      }
     ],
     currentCommodity:''
   },
@@ -70,25 +22,29 @@ Page({
       currentTypeId: opt.currentTarget.id
     });
 
+    utilService.loadCommodityByType(opt.currentTarget.id).then(res => {
+      this.setData({
+        commodityList: res
+      });
+    }, res=>{
+      this.setData({
+        commodityList:[]
+      })
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let classId = options.classId;
-    let typeId = options.typeId;
+   let classId = options.classId;
+   let typeId = options.typeId;
 
     this.setData({
+      curClassId: classId,
       currentTypeId: typeId
     });
 
-    utilService.loadCommodityType(classId).then(res=>{
-      console.log(res);
-      this.setData({
-        commodityType: res
-      });
-    }); 
   },
 
   /**
@@ -102,7 +58,27 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    let classId = this.data.curClassId;
+    let typeId = this.data.currentTypeId;
 
+    utilService.loadCommodityType(classId).then(res => {
+      console.log(res);
+      this.setData({
+        commodityType: res,
+        currentTypeId: typeId
+      });
+
+      utilService.loadCommodityByType(typeId).then(res=>{
+        this.setData({
+          commodityList:res
+        });
+      }, res=>{
+        this.setData({
+          commodityList:[]
+        });
+      })
+
+    }); 
   },
 
   /**

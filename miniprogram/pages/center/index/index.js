@@ -1,5 +1,6 @@
 // miniprogram/pages/center/index/index.js
 var util = require('../../../util/util.js');
+var utilService = require('../../../util/service.js');
 
 Page({
 
@@ -97,14 +98,19 @@ Page({
       }).catch(err=>{
         console.log(err);
       });
-        
-      
-     
     }
   },
 
   onLookupMyOder:function(e){
 
+  },
+
+  onOpenSetting:function(e){
+    wx.openSetting({
+      success:res=>{
+        console.log(res);
+      }
+    })
   },
 
   onLookupOrderMenu:function(e){
@@ -127,21 +133,21 @@ Page({
                 success: res => {
                  console.log(res);
 
+                  utilService.updateDefaultAddr(res);
+
+
                 },
-                fail: res => {
-                  wx.showToast({
-                    title: '地址选择错误',
-                    duration: 2000
-                  });
-                  console.log(res);
-                }
+                
               })
             },
             fail: function () {
               wx.showToast({
                 title: '请容许添加地址',
+                icon:'none',
                 duration: 2000
-              })
+              });
+
+
             }
           })
 
@@ -177,6 +183,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    
     if (util.getIsUpdateInfo()) {
       this.setData({
         avatarUrl: util.getAvatarUrl(),

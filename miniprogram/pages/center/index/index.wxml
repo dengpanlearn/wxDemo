@@ -40,13 +40,13 @@
   </view>
 
   <view class='card'>
-    <navigator class='card-menu' wx:for="{{userCars}}" url="{{item.pages}}">
+    <navigator class='card-menu' wx:for="{{userCars}}" wx:key='title' url="{{item.pages}}">
       <text class='title'>{{item.title}}</text>
       <image class='icon' src='../../../images/center/go.png'></image>
     </navigator>
-
-  
   </view>
+
+  <button class='secret' type='primary' open-type='openSetting' bindopensetting='onOpenSetting'>权限设置</button>
 
 
 </view>

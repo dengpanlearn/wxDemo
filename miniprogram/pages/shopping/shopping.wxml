@@ -1,2 +1,18 @@
 <!--miniprogram/pages/shopping/shopping.wxml-->
-<text>miniprogram/pages/shopping/shopping.wxml</text>
+<view class='container'>
+  <view class='address' bindtap='onModifyAddress'>
+    <image class='address-icon' src='../../images/address.png'></image>
+    <view class='address-desc'>
+      <view class='address-rcv-desc'>
+        <view class='address-rcv-people'></view>
+        <view class='address-rcv-phone'></view>
+      </view>
+
+      <view class='address-desc-value'></view>
+    </view>
+
+    <image class='address-modify-icon'></image>
+  </view>
+
+
+</view>
