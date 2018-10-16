@@ -29,11 +29,8 @@ Page({
    util.loadWxUserInfo().then((res) => {
       console.info('load wx user info ok');
 
-     util.registerUser().then(res =>{
-       console.log('register ok');
-
-     })
-    }, (res) => {
+    
+    },(res) => {
       console.info('load wx user info error ${res}');
       console.log(res);
     })

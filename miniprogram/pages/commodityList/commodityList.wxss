@@ -47,10 +47,100 @@
   border-bottom: 1rpx solid #3cff00;
 }
 
+
 .commodity-list{
   position: fixed;
-  top: 80rpx;
+  top: 60rpx;
   left: 0rpx;
   width: 100%;
-  height: 100%-80rpx;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background: #f8f7f7;
+}
+
+::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+ .commodity-item{
+  width: 100%;
+  height: 225rpx;
+   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  border-bottom: 1rpx solid #eeebeb;
+}
+
+.commodity-item .commodity-image-top{
+  width:225rpx;
+  height: 100%; 
+}
+
+.commodity-image-top .commodity-image{
+  width:100%;
+  height: 100%; 
+}
+
+.commodity-item .commodity-desc{
+  width: 100%-225rpx;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  
+}
+
+.commodity-desc .commodity-title{
+  width: 100%;
+  height: 20%;
+  line-height: height;
+  font-size: 30rpx;
+  text-align: left;
+}
+
+.commodity-desc .commodity-feature{
+  width: 100%;
+  height: 20%;
+  line-height: 20%;
+  font-size: 25rpx;
+  text-align: left;
+}
+
+.commodity-desc .commodity-price-feature{
+  width: 100%;
+  height: 20%;
+  line-height: 30rpx;
+  font-size: 20rpx;
+  text-align: left;
+}
+
+.commodity-desc .commodity-order{
+  width: 100%;
+  height: 20%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.commodity-order .commodity-price{
+  width: 50rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #ff5e00;
+}
+
+
+.commodity-order .commodity-order-image{
+  width: 50rpx;
+  height: 50rpx;
 }

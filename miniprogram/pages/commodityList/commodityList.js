@@ -9,7 +9,60 @@ Page({
    */
   data: {
     commodityType:[],
-    currentTypeId:''
+    currentTypeId:'',
+
+    commodityList:[
+      {
+        fileId:'../../images/tmp.png',
+        title:'佳沛新西兰绿奇异果(巨无霸)1',
+        feature:'清新绿果 酸甜多汁',
+        priceFeature:'22个/单只5.82元',
+        price:'¥128'
+      },
+      {
+        fileId: '../../images/tmp.png',
+        title: '佳沛新西兰绿奇异果(巨无霸)2',
+        feature: '清新绿果 酸甜多汁',
+        priceFeature: '22个/单只5.82元',
+        price: '¥128'
+      },
+      {
+        fileId: '../../images/tmp.png',
+        title: '佳沛新西兰绿奇异果(巨无霸)3',
+        feature: '清新绿果 酸甜多汁',
+        priceFeature: '22个/单只5.82元',
+        price: '¥128'
+      },
+      {
+        fileId: '../../images/tmp.png',
+        title: '佳沛新西兰绿奇异果(巨无霸)4',
+        feature: '清新绿果 酸甜多汁',
+        priceFeature: '22个/单只5.82元',
+        price: '¥128'
+      },
+      {
+        fileId: '../../images/tmp.png',
+        title: '佳沛新西兰绿奇异果(巨无霸)5',
+        feature: '清新绿果 酸甜多汁',
+        priceFeature: '22个/单只5.82元',
+        price: '¥128'
+      },
+      {
+        fileId: '../../images/tmp.png',
+        title: '佳沛新西兰绿奇异果(巨无霸)6',
+        feature: '清新绿果 酸甜多汁',
+        priceFeature: '22个/单只5.82元',
+        price: '¥128'
+      },
+      {
+        fileId: '../../images/tmp.png',
+        title: '佳沛新西兰绿奇异果(巨无霸)7',
+        feature: '清新绿果 酸甜多汁',
+        priceFeature: '22个/单只5.82元',
+        price: '¥128'
+      }
+    ],
+    currentCommodity:''
   },
 
   onSelectType:function(opt){

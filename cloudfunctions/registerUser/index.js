@@ -11,6 +11,8 @@ exports.main = async (event, context) => {
     city,
     province,
     country,
+    avatarUrl,
+    language,
     userInfo
   } = event;
 
@@ -44,6 +46,8 @@ exports.main = async (event, context) => {
           country:country,
           openId:openId,
           appId:appId,
+          avatarUrl: avatarUrl,
+          language: language,
           createTime: db.serverDate()
         }
       });

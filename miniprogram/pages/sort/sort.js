@@ -66,7 +66,6 @@ Page({
     let urlNext = '../commodityList/commodityList?typeId=' + opt.currentTarget.id;
     urlNext = urlNext + '&classId=' + this.data.curClassId;
     wx.navigateTo({
-      
       url: urlNext,
     })
   },
