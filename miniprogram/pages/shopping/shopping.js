@@ -11,6 +11,31 @@ Page({
     defaultAddress:{}
   },
 
+  onModifyAddress:function(arg){
+    wx.authorize({
+      scope: 'scope.address',
+
+      success: function () {
+        wx.chooseAddress({
+          success: res => {
+            console.log(res);
+
+            utilService.updateDefaultAddr(res)
+
+          },
+
+        })
+      },
+      fail: function () {
+        wx.showToast({
+          title: '请容许添加地址',
+          icon: 'none',
+          duration: 2000
+        });
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -30,6 +55,7 @@ Page({
    */
   onShow: function () {
     utilService.getDefaultAddr().then(res => {
+      console.log(res);
       this.setData({
         defaultAddress: res
       });
