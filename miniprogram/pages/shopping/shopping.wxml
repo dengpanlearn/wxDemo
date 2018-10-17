@@ -1,17 +1,18 @@
 <!--miniprogram/pages/shopping/shopping.wxml-->
 <view class='container'>
   <view class='address' bindtap='onModifyAddress'>
-    <image class='address-icon' src='../../images/address.png'></image>
-    <view class='address-desc'>
-      <view class='address-rcv-desc'>
-        <view class='address-rcv-people'></view>
-        <view class='address-rcv-phone'></view>
+    <view class='address-item'>
+      <image class='address-icon' src='../../images/center/address.png'></image>
+      <view class='address-desc'>
+        <view class='address-rcv-desc'>
+         <view class='address-rcv-people'>{{defaultAddress.userName}}</view>
+         <view class='address-rcv-phone'>{{defaultAddress.telNumber}}</view>
+        </view>
+
+        <view class='address-desc-value'>{{defaultAddress.detailInfo}}</view>
       </view>
-
-      <view class='address-desc-value'></view>
     </view>
-
-    <image class='address-modify-icon'></image>
+    <image class='address-modify-icon' src='../../images/center/go.png'></image>
   </view>
 
 

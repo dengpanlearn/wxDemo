@@ -46,7 +46,12 @@
     </navigator>
   </view>
 
-  <button class='secret' type='primary' open-type='openSetting' bindopensetting='onOpenSetting'>权限设置</button>
+
+
+  <button class='secret-item' type='default' open-type='openSetting' bindopensetting='onOpenSetting'>权限设置</button>
+
+
+
 
 
 </view>

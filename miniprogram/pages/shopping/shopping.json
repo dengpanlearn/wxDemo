@@ -1,7 +1,7 @@
 {
-      "backgroundColor": "#F6F6F6",
+      "backgroundColor": "#fcfcfc",
       "backgroundTextStyle": "light",
-      "navigationBarBackgroundColor": "#F6F6F6",
+      "navigationBarBackgroundColor": "#fcfcfc",
       "navigationBarTitleText": "购物车",
       "navigationBarTextStyle": "black"
 }
