@@ -61,6 +61,8 @@
   background: #f8f7f7;
 }
 
+
+
 ::-webkit-scrollbar{
   width: 0;
   height: 0;
@@ -75,6 +77,17 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: 1rpx solid #eeebeb;
+}
+
+.commodity-item-hover{
+    width: 100%;
+  height: 225rpx;
+   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1rpx solid #eeebeb;
+  background: #f3f2f2;
 }
 
 .commodity-item .commodity-image-top{
@@ -139,7 +152,6 @@
   font-size: 30rpx;
   color: #ff5e00;
 }
-
 
 .commodity-order .commodity-order-image{
   width: 50rpx;

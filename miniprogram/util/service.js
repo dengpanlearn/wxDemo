@@ -93,11 +93,49 @@ return new Promise((resolve, reject)=>{
     });
   });
 }
+function getShopping(){
+  return new Promise((resolve, reject)=>{
+    wx.cloud.callFunction({
+      name: 'getShopping'
+    }).then(res=>{
+      if (res.result.code==0){
+        resolve(res.result.data);
+      }else{
+        reject(res.result.data);
+      }
+    }).catch(res=>{
+      reject(res);
+    }
+    );
+  });
+}
+
+function addShopping(res){
+  return new Promise((resolve, reject)=>{
+    wx.cloud.callFunction({
+      name: 'addShopping',
+      data:{
+        commodityId: res.commodityId,
+        num: res.num
+      }
+    }).then(res=>{
+      if (res.result.code == 0){
+        resolve(res.result.data);
+      }else{
+        reject(res.result.data);
+      }
+    }).catch(res=>{
+      reject(res);
+    });
+  });
+}
 
 module.exports={
   loadCommodityClass,
   loadCommodityType,
   loadCommodityByType,
   getDefaultAddr,
-  updateDefaultAddr
+  updateDefaultAddr,
+  getShopping,
+  addShopping
 }
