@@ -1,5 +1,6 @@
 <!--miniprogram/pages/shopping/shopping.wxml-->
 <view class='container'>
+<scroll-view class='scroll-view' scroll-y='true'>
   <view class='address' bindtap='onModifyAddress'>
     <view class='address-item'>
       <image class='address-icon' src='../../images/center/address.png'></image>
@@ -15,5 +16,6 @@
     <image class='address-modify-icon' src='../../images/center/go.png'></image>
   </view>
 
-
+ 
+</scroll-view>
 </view>

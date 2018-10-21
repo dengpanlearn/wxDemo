@@ -34,7 +34,11 @@ Page({
   },
 
   onAddShopping: function(opt){
-
+ 
+    utilService.addShopping({
+      commodityId: opt.currentTarget.id,
+      num:1
+    });
   },
 
   /**

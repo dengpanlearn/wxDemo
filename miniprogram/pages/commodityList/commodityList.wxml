@@ -17,7 +17,7 @@
          <view class='commodity-price-feature'>{{item.priceFeature}}</view>
           <view class='commodity-order' >
             <view class='commodity-price'>{{item.price}}</view>
-            <image class ='commodity-order-image' src='../../images/add.png' bindtap='onAddShopping'></image>
+            <image class ='commodity-order-image'  id='{{item._id}}' src='../../images/add.png' bindtap='onAddShopping'></image>
           </view>
         </view>
       </view>

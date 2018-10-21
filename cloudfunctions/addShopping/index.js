@@ -23,12 +23,17 @@ let{
         commodityId: commodityId,
     }).get();
 
-    if (result.data.length != 0){
+    if (result.data.length == 0){
 
       result = await db.collection("demo-shopping").add({
-        openId: openId,
-        commodityId: commodityId,
-        num:num
+        data:{
+          openId: openId,
+          commodityId: commodityId,
+          num: num,
+          appId: appId,
+          time:db.serverDate()
+        }
+   
       });
       return {
         code: 0,
@@ -36,9 +41,14 @@ let{
       }
     }else{
       const _ = db.command;
+      let newNum = result.data[0].num+num;
       result = await db.collection("demo-shopping").doc(result.data[0]._id
       ).update({
-        num: _.inc(num)
+        data:{
+          num: newNum,
+          time: db.serverDate()
+        }
+   
       });
 
       return {
