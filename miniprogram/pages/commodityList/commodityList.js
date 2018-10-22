@@ -38,7 +38,18 @@ Page({
     utilService.addShopping({
       commodityId: opt.currentTarget.id,
       num:1
+    }).then(res=>{
+      wx.showToast({
+        title: '成功加入购物车',
+      });
+    }).catch(err=>{
+      wx.showToast({
+        title: '加入购物车失败',
+        icon: 'none'
+      })
     });
+
+ 
   },
 
   /**

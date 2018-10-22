@@ -42,18 +42,29 @@ let{
     }else{
       const _ = db.command;
       let newNum = result.data[0].num+num;
-      result = await db.collection("demo-shopping").doc(result.data[0]._id
-      ).update({
-        data:{
-          num: newNum,
-          time: db.serverDate()
-        }
-   
-      });
+      if (newNum == 0 ){
+        result = await db.collection("demo-shopping").doc(result.data[0]._id
+        ).remove();
 
-      return {
-        code: 0,
-        data: result
+        return {
+          code: 0,
+          data:result
+        }
+
+      }else{
+        result = await db.collection("demo-shopping").doc(result.data[0]._id
+        ).update({
+          data:{
+            num: newNum,
+            time: db.serverDate()
+          }
+    
+        });
+
+        return {
+          code: 0,
+          data: result
+        }
       }
     }
   }catch(err){

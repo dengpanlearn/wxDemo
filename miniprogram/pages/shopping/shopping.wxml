@@ -15,7 +15,44 @@
     </view>
     <image class='address-modify-icon' src='../../images/center/go.png'></image>
   </view>
+  <view class='shopping-item' wx:for='{{shoppingList}}' wx:key='_id' id='{{item._id}}'>
+    <image class='shoppingn-select' src='../../images/unchecked.png'> </image>
+    <view class='shopping-commodity'>
+      <image class='commodity-icon' src='{{item.commodity.fileId}}'></image>
+      <view class='commodity-desc'>
+        <view class='commodity-desc-title'>{{item.commodity.title}}</view>
+        <view class='commodity-desc-price'>{{item.commodity.priceFeature}}</view>
+        <view class='commodity-price-item'>
+          <view class='commodity-price'>¥{{item.totalPrice}}</view>
 
+          <view class='commodity-count-modity'>
+            
+             <image class='commodity-count-minus' src='../../images/remove.png' id ='{{item.commodity._id}}' bindtap='onMinus'></image>
+              <text class='commodity-count-title'>{{item.num}}</text>
+              <image class='commodity-count-add' src='../../images/add.png' id ='{{item.commodity._id}}'  bindtap='onAdd'></image>
+           
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    
+  </view>
  
 </scroll-view>
+
+<view class='order-view'>
+  <view class='select-menu'>
+    <image class='select-icon' src='../../images/unchecked.png'></image>
+    <text class='select-text'>全选</text>
+  </view>
+
+  <view class='order-menu'>
+    <text class='order-info-title'>合计:</text>
+    <text class='order-info-price'>¥{{totalPrice}}</text>
+    <view class="{{totalItems=='0'? 'order-in-view-none':'order-in-view'}}">
+    <text class='order-in'>结算({{totalItems}})</text>
+    </view>
+  </view>
+</view>
 </view>

@@ -2,6 +2,21 @@ const db = wx.cloud.database({
   env: 'clouddemo-480e99'
 });
 
+function getCommodityById(commodityId){
+  return new Promise((resolve, reject)=>{
+    db.collection('demo-commodity-info').where({
+      _id: commodityId
+    }).get({
+      success: res=>{
+        resolve(res.data);
+      },
+      fail: res=>{
+        reject(res);
+      }
+    });
+  })
+}
+
 function loadCommodityByType(typeId){
   return new Promise((resovle, reject)=>{
     db.collection('demo-commodity-info').where({
@@ -134,6 +149,7 @@ module.exports={
   loadCommodityClass,
   loadCommodityType,
   loadCommodityByType,
+  getCommodityById,
   getDefaultAddr,
   updateDefaultAddr,
   getShopping,
