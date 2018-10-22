@@ -81,7 +81,7 @@ Page({
         }
       }
     }
-  },1500),
+  }, 1500),
 
   onMinus: util.throttle( function (opt) {
 
@@ -100,6 +100,7 @@ Page({
             }).then(res=>{
               tmpList[i].num -= 1;
               let totalPrice = (Number(tmpList[i].num) * Number(tmpList[i].commodity.price.slice(1))).toFixed(2);
+              tmpList[i].totalPrice = totalPrice;
               tmpList[i].valid = true;
               this.setData({
               shoppingList: tmpList
@@ -170,17 +171,18 @@ Page({
               valid:true,
               commodity: commodity[0]
             }
-
+            
             shoppingListTmp.push(shoppingItem);
+            
+            
+              this.setData({
+                shoppingList: shoppingListTmp
+              });
             
       
           }
 
-          if (i == (res.length - 1)) {
-            this.setData({
-              shoppingList: shoppingListTmp
-            });
-          }
+        
         });
       }
 

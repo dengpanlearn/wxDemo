@@ -150,10 +150,11 @@ function throttle(fn, gapTime) {
   }
 
   let _lastTime = null
-  return function (opt) {
+  return function () {
+   
     let _nowTime = + new Date()
     if (_nowTime - _lastTime > gapTime || !_lastTime) {
-      fn(opt)
+      fn.apply(this, arguments);
       _lastTime = _nowTime
     }
   }
