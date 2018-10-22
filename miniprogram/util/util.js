@@ -144,6 +144,21 @@ function loadWxUserInfo(){
   })*/
 }
 
+function throttle(fn, gapTime) {
+  if (gapTime == null || gapTime == undefined) {
+    gapTime = 1500
+  }
+
+  let _lastTime = null
+  return function (opt) {
+    let _nowTime = + new Date()
+    if (_nowTime - _lastTime > gapTime || !_lastTime) {
+      fn(opt)
+      _lastTime = _nowTime
+    }
+  }
+}
+
 module.exports = {
   getIsUpdateInfo,
   getAvatarUrl,
@@ -152,5 +167,6 @@ module.exports = {
   getIsLogged,
   loadWxUserInfo,
   objectIsEmpty,
-  registerUser
+  registerUser,
+  throttle
 }
