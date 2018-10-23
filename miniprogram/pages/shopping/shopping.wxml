@@ -16,7 +16,7 @@
     <image class='address-modify-icon' src='../../images/center/go.png'></image>
   </view>
   <view class='shopping-item' wx:for='{{shoppingList}}' wx:key='_id' id='{{item._id}}'>
-    <image class='shoppingn-select' src='../../images/unchecked.png'> </image>
+    <image class='shoppingn-select' src="{{shoppingList[index].selected?'../../images/checked.png' :'../../images/unchecked.png'}}" bindtap='onSelect' id='{{item._id}}'> </image>
     <view class='shopping-commodity'>
       <image class='commodity-icon' src='{{item.commodity.fileId}}'></image>
       <view class='commodity-desc'>
@@ -43,7 +43,7 @@
 
 <view class='order-view'>
   <view class='select-menu'>
-    <image class='select-icon' src='../../images/unchecked.png'></image>
+    <image class='select-icon' src="{{allSelected?'../../images/checked.png' :'../../images/unchecked.png'}}"  bindtap='onAllSelect'></image>
     <text class='select-text'>全选</text>
   </view>
 

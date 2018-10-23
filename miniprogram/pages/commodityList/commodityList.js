@@ -1,7 +1,7 @@
 // miniprogram/pages/commodityList/commodityList.js
 
 var utilService = require('../../util/service.js');
-
+var util = require('../../util/util.js');
 Page({
 
   /**
@@ -33,7 +33,7 @@ Page({
     })
   },
 
-  onAddShopping: function(opt){
+  onAddShopping: util.throttle(function(opt){
  
     utilService.addShopping({
       commodityId: opt.currentTarget.id,
@@ -48,9 +48,7 @@ Page({
         icon: 'none'
       })
     });
-
- 
-  },
+  }, 1000),
 
   /**
    * 生命周期函数--监听页面加载
