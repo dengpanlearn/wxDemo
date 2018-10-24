@@ -79,6 +79,9 @@ function loadWxUserInfo(){
         userInfo.city = serverUserInfo.city;
         userInfo.language = serverUserInfo.language;
         userInfo.avatarUrl = serverUserInfo.avatarUrl;
+        resovle();
+      }else{
+        reject();
       }
     }).catch(res=>{
       reject(res);

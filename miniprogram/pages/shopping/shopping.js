@@ -2,7 +2,7 @@
 
 var utilService = require('../../util/service.js');
 var util = require('../../util/util.js');
-
+var utilShopping = require('../../util/shoppingUtil.js');
 function getShoppinig(res){
   return new Promise((resolve, reject)=>{
     let commodityId = res.commodityId;
@@ -93,6 +93,8 @@ Page({
     for (let i = 0; i < tmpList.length; i++) {
       if (tmpList[i]._id == _id) {
         tmpList[i].selected = !tmpList[i].selected;
+
+        utilShopping.updateShoppingItemSelected( tmpList[i].selected, _id );
         break;
       }
     }
@@ -104,6 +106,7 @@ Page({
       totalPrice: calcResult.totalPrice.toFixed(2),
       totalItems: calcResult.totalCnt.toString()
     });
+
   },
 
   onAllSelect:function(opt){
@@ -120,6 +123,8 @@ Page({
       totalPrice: calcResult.totalPrice.toFixed(2),
       totalItems: calcResult.totalCnt.toString()
     });
+
+    utilShopping.updateShoppingAllSelected(allSelected);
   },
 
   /**
@@ -145,33 +150,30 @@ Page({
       if (tmpList[i].commodity._id == curId){
         if (tmpList[i].valid){
           this.data.shoppingList[i].valid = false;
-          utilService.addShopping({
-            commodityId: curId,
-            num: 1
-          }).then(result=>{
-            tmpList[i].num += 1;
-            let totalPrice = (Number(tmpList[i].num) * Number(tmpList[i].commodity.price.slice(1))).toFixed(2);
-            let totalCalcPrice = this.data.totalPrice;
-            
-            if (tmpList[i].selected){
-              totalCalcPrice = (Number(totalCalcPrice) + Number(tmpList[i].commodity.price.slice(1))).toFixed(2);
-              
-            }
-            tmpList[i].totalPrice = totalPrice;
-            tmpList[i].valid = true;
-            this.setData({
-              shoppingList: tmpList,
-              totalPrice: totalCalcPrice
-            });
-          }).catch(err=>{
-            this.data.shoppingList[i].valid = true;
-          });
-        }else{
-          return;
+
+          tmpList[i].num += 1;
+          let totalPrice = (Number(tmpList[i].num) * Number(tmpList[i].commodity.price.slice(1))).toFixed(2);
+          tmpList[i].totalPrice = totalPrice;
+          tmpList[i].valid = true;
         }
+        else{
+
+        }
+
+        break;
       }
     }
-  }, 1500),
+    let calcResult = calcOnOder(tmpList);
+    this.setData({
+      shoppingList: tmpList,
+      allSelected: calcResult.allTmpSelected,
+      totalPrice: calcResult.totalPrice.toFixed(2),
+      totalItems: calcResult.totalCnt.toString()
+    });
+
+    utilShopping.addShoppingItem(curId);
+         
+  }, 1000),
 
   onMinus: util.throttle( function (opt) {
 
@@ -183,71 +185,52 @@ Page({
 
         if (tmpList[i].valid){
           this.data.shoppingList[i].valid = false;
-          if (tmpList[i].num > 1){
-            utilService.addShopping({
-              commodityId: opt.currentTarget.id,
-              num: -1
-            }).then(res=>{
-              tmpList[i].num -= 1;
-              let totalPrice = (Number(tmpList[i].num) * Number(tmpList[i].commodity.price.slice(1))).toFixed(2);
+          if (tmpList[i].num > 1) {
+            tmpList[i].num -= 1;
+            let totalPrice = (Number(tmpList[i].num) * Number(tmpList[i].commodity.price.slice(1))).toFixed(2);
+            tmpList[i].totalPrice = totalPrice;
+            tmpList[i].valid = true;
 
-              let totalCalcPrice = this.data.totalPrice;
-              if (tmpList[i].selected) {
-                totalCalcPrice = (Number(totalCalcPrice) - Number(tmpList[i].commodity.price.slice(1))).toFixed(2);
+            let calcResult = calcOnOder(tmpList);
 
-              }
-              tmpList[i].totalPrice = totalPrice;
-              tmpList[i].valid = true;
-              this.setData({
+            this.setData({
               shoppingList: tmpList,
-              totalPrice: totalCalcPrice
+              allSelected: calcResult.allTmpSelected,
+              totalPrice: calcResult.totalPrice.toFixed(2),
+              totalItems: calcResult.totalCnt.toString()
             });
-          }).catch(res=>{
-            this.data.shoppingList[i].valid = true;
-          });
-        }else{
+
+            utilShopping.minusShoppingItem(curId);
+          }else{
             wx.showModal({
               title: '提示',
               content: '确定要删除该商品吗',
-              success: res=>{
-                if (res.confirm){
-                  utilService.addShopping({
-                    commodityId: opt.currentTarget.id,
-                    num: -1
-                  }).then(res=>{
+              success: res => {
 
-                    let totalCalcPrice = this.data.totalPrice;
-                    if (tmpList[i].selected) {
-                      totalCalcPrice = (Number(totalCalcPrice) - Number(tmpList[i].commodity.price.slice(1))).toFixed(2);
+                tmpList.splice(i, 1);
+                let calcResult = calcOnOder(tmpList);
 
-                    }
-                    tmpList.splice(i, 1);
-                    this.setData({
-                      shoppingList: tmpList,
-                      totalPrice: totalCalcPrice
-                    });
+                this.setData({
+                  shoppingList: tmpList,
+                  allSelected: calcResult.allTmpSelected,
+                  totalPrice: calcResult.totalPrice.toFixed(2),
+                  totalItems: calcResult.totalCnt.toString()
+                });
 
-                  }).catch(err=>{
-                    wx.showToast({
-                      title: '删除失败',
-                      icon: 'none'
-                    });
-                    this.data.shoppingList[i].valid = true;
-                  });
-                }else{
-                  this.data.shoppingList[i].valid = true;
-                }
-              },
-              complete: res=>{
-                this.data.shoppingList[i].valid = true;
+                utilShopping.minusShoppingItem(curId);
+                
               }
-            })
+            });
+          }
         }
-        }else{
-          return;
-        }
+
+        break;
       }
-  }},1500),
+    }
+
+   
+       
+      },1000),
 
   /**
    * 生命周期函数--监听页面显示
@@ -260,34 +243,14 @@ Page({
       });
     });
     
-    
-    utilService.getShopping().then(res => {
-
-      let arrayPromise = [];
-      let allSelected = this.data.allSelected;
-      for (let i = 0; i < res.length; i++) {
-        arrayPromise.push(getShoppinig(res[i]));
-
-       }
-      Promise.all(arrayPromise).then(res => {
-          for (let i = 0; i < res.length; i++){
-
-            for (let j = 0; j < this.data.shoppingList.length; j++){
-              if (res[i]._id == this.data.shoppingList[j]._id){
-                res[i].selected = this.data.shoppingList[j].selected;
-                break;
-              }
-            }
-          }
-        let calcResult = calcOnOder(res)
-        this.setData({
-          shoppingList: res,
-          allSelected: calcResult.allTmpSelected,
-          totalPrice: calcResult.totalPrice.toFixed(2),
-          totalItems: calcResult.totalCnt.toString()
-        });
-      })
-        
+    let tmpList = utilShopping.getShoppingList();
+    console.log(tmpList);
+    let calcResult = calcOnOder(tmpList);
+    this.setData({
+      shoppingList: tmpList,
+      allSelected: calcResult.allTmpSelected,
+      totalPrice: calcResult.totalPrice.toFixed(2),
+      totalItems: calcResult.totalCnt.toString()
     });
   },
 

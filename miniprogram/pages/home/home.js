@@ -1,7 +1,7 @@
 // miniprogram/pages/home/home.js
 
 var util = require('../../util/util.js');
-
+var utilShopping = require('../../util/shoppingUtil.js');
 Page({
 
   /**
@@ -28,8 +28,8 @@ Page({
 
    util.loadWxUserInfo().then((res) => {
       console.info('load wx user info ok');
+     utilShopping.loadShoppingList();
 
-    
     },(res) => {
       console.info('load wx user info error ${res}');
       console.log(res);

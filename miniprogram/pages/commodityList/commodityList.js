@@ -2,6 +2,7 @@
 
 var utilService = require('../../util/service.js');
 var util = require('../../util/util.js');
+var shoppingUtil = require('../../util/shoppingUtil.js');
 Page({
 
   /**
@@ -35,10 +36,9 @@ Page({
 
   onAddShopping: util.throttle(function(opt){
  
-    utilService.addShopping({
-      commodityId: opt.currentTarget.id,
-      num:1
-    }).then(res=>{
+    shoppingUtil.addShoppingItem(
+       opt.currentTarget.id
+    ).then(res=>{
       wx.showToast({
         title: '成功加入购物车',
       });
