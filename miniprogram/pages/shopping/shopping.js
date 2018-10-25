@@ -48,6 +48,7 @@ function calcOnOder(tmpList){
   }
 }
 
+
 Page({
 
   /**
@@ -127,11 +128,16 @@ Page({
     utilShopping.updateShoppingAllSelected(allSelected);
   },
 
+ 
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-   
+    wx.showLoading({
+      title: '加载',
+      mask: true
+    })
   },
 
   /**
@@ -242,16 +248,48 @@ Page({
         defaultAddress: res
       });
     });
-    
-    let tmpList = utilShopping.getShoppingList();
-    console.log(tmpList);
-    let calcResult = calcOnOder(tmpList);
-    this.setData({
-      shoppingList: tmpList,
-      allSelected: calcResult.allTmpSelected,
-      totalPrice: calcResult.totalPrice.toFixed(2),
-      totalItems: calcResult.totalCnt.toString()
-    });
+   
+
+    if (!utilShopping.getShoppingListLoadStatus()){
+      let intNum = setInterval(
+        res => {
+
+          if (utilShopping.getShoppingListLoadStatus()) {
+            wx.hideLoading();
+
+            let tmpList = utilShopping.getShoppingList();
+
+            let calcResult = calcOnOder(tmpList);
+            this.setData({
+              shoppingList: tmpList,
+              allSelected: calcResult.allTmpSelected,
+              totalPrice: calcResult.totalPrice.toFixed(2),
+              totalItems: calcResult.totalCnt.toString()
+            });
+            clearInterval(intNum);
+          }
+        
+        },
+
+         500,
+         this
+      );
+    }
+    else
+    {
+      let tmpList = utilShopping.getShoppingList();
+      wx.hideLoading();
+      let calcResult = calcOnOder(tmpList);
+      this.setData({
+        shoppingList: tmpList,
+        allSelected: calcResult.allTmpSelected,
+        totalPrice: calcResult.totalPrice.toFixed(2),
+        totalItems: calcResult.totalCnt.toString()
+      });
+
+     
+    }
+ 
   },
 
   /**

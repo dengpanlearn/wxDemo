@@ -24,15 +24,26 @@ Page({
       return
     }
 
+    wx.showLoading({
+      title: '加载',
+      mask:true
+    })
+
+
 
 
    util.loadWxUserInfo().then((res) => {
       console.info('load wx user info ok');
-     utilShopping.loadShoppingList();
+     utilShopping.loadShoppingList().then(res=>{
+       wx.hideLoading();
+     }).catch(res=>{
+       wx.hideLoading();
+     });
 
     },(res) => {
       console.info('load wx user info error ${res}');
       console.log(res);
+      wx.hideLoading();
     })
  
   },

@@ -2,6 +2,7 @@
 
 var utilService = require('./service.js');
 var util = require('./util.js');
+let  shoppingListLoaded = false;
 
 let shoppingList = [];
 
@@ -43,16 +44,22 @@ function loadShoppingList(){
 
       Promise.all(arrayPromise).then(res => {
         shoppingList = res;
-
+        shoppingListLoaded = true;
         resolve(res);
       }).catch(res => {
+        shoppingListLoaded = true;
         reject(res);
       });
     }).catch(res => {
+      shoppingListLoaded = true;
       reject(res);
     });
   });
   
+}
+
+function getShoppingListLoadStatus() {
+  return shoppingListLoaded;
 }
 
 function addShoppingItem(commodityId){
@@ -91,13 +98,16 @@ function addShoppingItem(commodityId){
           }
         });
       }
+     
       resolve(res);
     }).catch(res => {
+     
       reject(res);
     });
   });
   
 }
+
 
 function minusShoppingItem(commodityId){
 
@@ -152,6 +162,7 @@ function getShoppingList(){
 
 module.exports = {
   loadShoppingList,
+  getShoppingListLoadStatus,
   addShoppingItem,
   minusShoppingItem,
   updateShoppingItemSelected,
