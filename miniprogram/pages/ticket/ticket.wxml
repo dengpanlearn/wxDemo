@@ -1,0 +1,49 @@
+<!--miniprogram/pages/ticket/ticket.wxml-->
+<view class='container'>
+  <scroll-view class='scroll-view' scroll-y='true'>
+
+   <view class='address' bindtap='onModifyAddress'>
+    <view class='address-item'>
+      <image class='address-icon' src='../../images/center/address.png'></image>
+      <view class='address-desc'>
+        <view class='address-rcv-desc'>
+         <view class='address-rcv-people'>{{defaultAddress.userName}}</view>
+         <view class='address-rcv-phone'>{{defaultAddress.telNumber}}</view>
+        </view>
+
+        <view class='address-desc-value'>{{defaultAddress.detailInfo}}</view>
+      </view>
+    </view>
+    <image class='address-modify-icon' src='../../images/center/go.png'></image>
+    </view>
+
+    <view class='ticket-total'>
+      <text class='ticket-name'>包裹</text>
+      <text class='ticket-total-item'>{{totalItems}}件商品</text>
+    </view>
+
+    <view class='ticket-time'>
+      <text class='ticket-time-title'>送达时间</text>
+      <picker class='ticket-time-select' mode ='multiSelector' range='{{forSelectDataTime}}' value='{{selectedDataTimeIdx}}'  bindchange ='onSelectDateTime'>
+        <text class='ticket-time-select-title'>{{selectedDataTime}}</text>
+        <image class='ticket-time-select-icon' src='../../images/center/go.png'></image>
+      </picker>
+    </view>
+
+
+    
+  <view class='ticket-list-item' wx:for ='{{ticketList}}' wx:key='_id' id='_id'>
+    <view class='ticket-item-info'>
+      <image class='ticket-item-icon' src='{{item.commodity.fileId}}'></image>
+      <view class='ticket-item-desc'>
+        <view class='ticket-item-tilte'>{{item.commodity.title}}</view>
+        <view class='ticket-item-price-desc'>{{item.commodity.priceFeature}}</view>
+      </view>
+    </view>
+
+    <view class='ticket-item-count'>x{{item.num}}</view>
+    <view class='ticket-item-price'>¥{{item.totalPrice}}</view>
+  </view>
+  </scroll-view>
+
+</view>

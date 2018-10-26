@@ -35,7 +35,7 @@ function calcOnOder(tmpList){
   for (let i = 0; i < tmpList.length; i++) {
     if (tmpList[i].selected) {
       totalPrice += Number(tmpList[i].totalPrice);
-      totalCnt++;
+      totalCnt += tmpList[i].num;
     } else {
       allTmpSelected = false;
     }
@@ -60,6 +60,14 @@ Page({
     totalItems:'0',
     shoppingList:[],
     allSelected:false
+  },
+
+  onTicket: function(opt){
+    if (this.data.totalItems != '0'){
+      wx.navigateTo({
+        url: '../ticket/ticket',
+      })
+    }
   },
 
   onModifyAddress:function(arg){
@@ -212,7 +220,7 @@ Page({
               title: '提示',
               content: '确定要删除该商品吗',
               success: res => {
-
+                if (res.confirm){
                 tmpList.splice(i, 1);
                 let calcResult = calcOnOder(tmpList);
 
@@ -224,7 +232,7 @@ Page({
                 });
 
                 utilShopping.minusShoppingItem(curId);
-                
+              }
               }
             });
           }
@@ -247,7 +255,7 @@ Page({
       this.setData({
         defaultAddress: res
       });
-    });
+    }).catch(res=>wx.hideLoading());
    
 
     if (!utilShopping.getShoppingListLoadStatus()){

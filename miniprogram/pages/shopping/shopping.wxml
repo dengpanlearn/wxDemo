@@ -50,7 +50,7 @@
   <view class='order-menu'>
     <text class='order-info-title'>合计:</text>
     <text class='order-info-price'>¥{{totalPrice}}</text>
-    <view class="{{totalItems=='0'? 'order-in-view-none':'order-in-view'}}">
+    <view class="{{totalItems=='0'? 'order-in-view-none':'order-in-view'}}" bindtap='onTicket'>
     <text class='order-in'>结算({{totalItems}})</text>
     </view>
   </view>

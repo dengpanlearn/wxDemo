@@ -160,6 +160,17 @@ function getShoppingList(){
   return shoppingList;
 }
 
+function getSelectedShoppingList() {
+
+  let tmpShoppingList = [];
+  for (let i = 0; i < shoppingList.length; i++){
+    if (shoppingList[i].selected){
+      tmpShoppingList.push(shoppingList[i]);
+    }
+  }
+  return tmpShoppingList;
+}
+
 module.exports = {
   loadShoppingList,
   getShoppingListLoadStatus,
@@ -167,5 +178,6 @@ module.exports = {
   minusShoppingItem,
   updateShoppingItemSelected,
   updateShoppingAllSelected,
-  getShoppingList
+  getShoppingList,
+  getSelectedShoppingList
 }
