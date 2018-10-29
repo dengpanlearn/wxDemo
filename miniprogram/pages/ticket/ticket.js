@@ -13,7 +13,12 @@ Page({
     forSelectDataTime:[],
     ticketList:[],
     selectedDataTimeIdx:[],
-    selectedDataTime:'请选择'
+    selectedDataTime:'请选择',
+    dispatch:'0',
+
+    selectedCoupon:'无可用',
+    grandTotalValue:'0',
+    totalPrice:'0'
   },
 
   onSelectDateTime:function(opt){
@@ -92,9 +97,31 @@ Page({
     setInterval(res=>{
       let tmpTicketList = utilShopping.getSelectedShoppingList();
       wx.hideLoading();
+      let dispatch;
+      let totalPrice = '0.00';
+      let  totalItems=0;
+      for (let i = 0; i < tmpTicketList.length; i++){
+        totalPrice = (Number(totalPrice) + Number(tmpTicketList[i].totalPrice)).toFixed(2);
+        totalItems += tmpTicketList[i].num;
+      }
+
+      if (Number(totalPrice) < 100.00){
+        totalPrice = (Number(totalPrice) + Number(10.00)).toFixed(2);
+        dispatch = '10.00';
+      }else{
+        dispatch = '0.00'
+      }
+
+       
       this.setData({
-        ticketList: tmpTicketList
+        ticketList: tmpTicketList,
+        totalItems: Number(totalItems).toString(),
+        totalPrice: totalPrice,
+        dispatch: dispatch
       });
+
+     
+     
     },
     1000,
     this)

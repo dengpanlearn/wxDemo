@@ -44,6 +44,47 @@
     <view class='ticket-item-count'>x{{item.num}}</view>
     <view class='ticket-item-price'>¥{{item.totalPrice}}</view>
   </view>
+
+
+
+  <view class='dispatch-view'>
+    <text class='dispatch-title'>配送费</text>
+    <text class='dispatch-price'>¥{{dispatch}}</text>
+    
+  </view>
+
+  
+  <view class='coupon-view'>
+    <text class='coupon-title'>优费卷</text>
+    <view class='coupon-select-view'>
+       <text class='coupon-select-title'>{{selectedCoupon}}</text>
+       <image class='coupon-select-item' src='../../images/center/go.png'></image>
+    </view>
+  </view>
+
+  <view class='grand-total-view'>
+    <view class='grand-total-item'>
+      <text class='grand-total-title'>积分可抵扣</text>
+      <text class='grand-total-value'>¥{{grandTotalValue}}</text>
+    </view>
+
+    <switch class='grand-total-select'></switch>
+  </view>
+
+  <view class='ticket-total-view'>
+    <text class='ticket-total-items'>共{{totalItems}}个商品，</text>
+    <text class='ticket-total-price-title'>合计</text>
+    <text class='ticket-total-price'>¥{{totalPrice}}</text>
+  </view>
   </scroll-view>
 
+<view class='pay-view'>
+  <view class='pay-title-view'>
+    <view class='pay-title'>待支付:¥{{totalPrice}}</view>
+  </view>
+  <view class='pay-enter-view'>
+    <text class='pay-enter'>提交订单</text>
+  </view>
+
+</view>
 </view>
