@@ -58,6 +58,10 @@ function loadShoppingList(){
   
 }
 
+function setShoppingListLoadStatus(loaded){
+  shoppingListLoaded = loaded;
+}
+
 function getShoppingListLoadStatus() {
   return shoppingListLoaded;
 }
@@ -173,6 +177,7 @@ function getSelectedShoppingList() {
 
 module.exports = {
   loadShoppingList,
+  setShoppingListLoadStatus,
   getShoppingListLoadStatus,
   addShoppingItem,
   minusShoppingItem,

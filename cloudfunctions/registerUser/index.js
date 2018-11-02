@@ -48,6 +48,7 @@ exports.main = async (event, context) => {
           appId:appId,
           avatarUrl: avatarUrl,
           language: language,
+          right:'custom',
           createTime: db.serverDate()
         }
       });

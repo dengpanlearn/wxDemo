@@ -43,6 +43,7 @@ Page({
     },(res) => {
       console.info('load wx user info error ${res}');
       console.log(res);
+      utilShopping.setShoppingListLoadStatus(true);
       wx.hideLoading();
     })
  

@@ -23,10 +23,27 @@ Page({
 
     utilService.loadCommodityType(opt.currentTarget.id).then(res =>{
       if (res.length != 0){
-        console.log(res);
+
+        let commodityType = [];
+        for (let row = 0; row < res.length / 2; row++) {
+          let rowItem = {
+            no: row,
+            item1: res[row * 2],
+            item2: res[row * 2 + 1]
+          }
+
+          commodityType.push(rowItem);
+        }
+
+        if ((res.length % 2) != 0) {
+          commodityType.push({
+            item1: res[res.length - 1],
+            item2: {}
+          });
+        }
         this.setData({
 
-        commodityType: res
+          commodityType: commodityType
        })
       } else {
         this.setData({
@@ -50,9 +67,26 @@ Page({
 
         utilService.loadCommodityType(res[0]._id).then(res => {
           if (res.length != 0) {
-      
+
+            let commodityType=[];
+              for (let row = 0; row < res.length/2; row++){
+                let rowItem = {
+                  no: row,
+                  item1 : res[row*2],
+                  item2: res[row*2+1] 
+                }
+
+                commodityType.push(rowItem);
+              }
+
+              if ((res.length % 2) != 0){
+                commodityType.push({
+                  item1: res[res.length -1],
+                  item2:{}
+                });
+              }
             this.setData({
-              commodityType: res
+              commodityType: commodityType
             })
           }
         })

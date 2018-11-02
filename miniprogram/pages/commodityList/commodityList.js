@@ -35,19 +35,29 @@ Page({
   },
 
   onAddShopping: util.throttle(function(opt){
- 
-    shoppingUtil.addShoppingItem(
-       opt.currentTarget.id
-    ).then(res=>{
+    if (!util.getIsLogged())
+    {
       wx.showToast({
-        title: '成功加入购物车',
+        title: '请登录注册',
+        icon: 'none',
       });
-    }).catch(err=>{
-      wx.showToast({
-        title: '加入购物车失败',
-        icon: 'none'
-      })
-    });
+    }else{
+      wx.showLoading()
+      shoppingUtil.addShoppingItem(
+        opt.currentTarget.id
+      ).then(res=>{
+        wx.hideLoading();
+        wx.showToast({
+          title: '成功加入购物车',
+        });
+      }).catch(err=>{
+        wx.hideLoading();
+        wx.showToast({
+          title: '加入购物车失败',
+          icon: 'none'
+        })
+      });
+    }
   }, 1000),
 
   /**

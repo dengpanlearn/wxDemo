@@ -3,7 +3,7 @@ const cloud = require('wx-server-sdk')
 var requestUrl = require('request');
 
 const getUserId = (user) => {
-  return new Promise((resolve, reject)=> {
+  return new Promise((resolve, reject) => {
     let url = 'https://api.weixin.qq.com/sns/jscode2session?appid=APPID&secret=SECRET&js_code=JSCODE&grant_type=authorization_code';
 
     let tmpUrl = url.replace('APPID', user.appId);
@@ -13,15 +13,15 @@ const getUserId = (user) => {
     requestUrl(tmpUrl, function (err, respone, body) {
       if (!err && respone.statusCode == 200) {
         resolve(body);
-        }
+      }
 
-        reject(err);
-      })
+      reject(err);
+    })
   })
 }
 
 cloud.init({
-  env:'clouddemo-480e99'
+  env: 'clouddemo-480e99'
 })
 
 
@@ -33,36 +33,59 @@ exports.main = async (event, context) => {
     userInfo
   } = event;
 
-  let openId = userInfo.openId; 
+  let openId = userInfo.openId;
   let appId = userInfo.appId;
+  /**从数据库获取用户userInfo*/
 
-  return {
-    code: 0,
-    data: appId
-  }
- /*
-  try{
+  try {
+    const db = cloud.database();
+    const collection = db.collection('demo-user');
+    let result = await collection.where({
+      openId: openId
+    }).get();
 
-    const val = await getUserId({ 
-      appId: appId, 
-      secret: secret,
-      code: code
-      });
-
-    let result = JSON.parse(val);
+    if (result.data.length != 0) {
       return {
         code: 0,
-        data: result.openid
+        data: result.data
       }
-  
-  }catch (e){
+    } else {
+      return {
+        code: -1,
+        data: []
+      };
+    }
+
+  } catch (err) {
     return {
       code: -1,
-      data: e
-    }
+      data: err
+    };
   }
 
-  */
+  /*
+   try{
+ 
+     const val = await getUserId({ 
+       appId: appId, 
+       secret: secret,
+       code: code
+       });
+ 
+     let result = JSON.parse(val);
+       return {
+         code: 0,
+         data: result.openid
+       }
+   
+   }catch (e){
+     return {
+       code: -1,
+       data: e
+     }
+   }
+ 
+   */
 }
 
 

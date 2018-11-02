@@ -1,7 +1,7 @@
 // miniprogram/pages/center/index/index.js
 var util = require('../../../util/util.js');
 var utilService = require('../../../util/service.js');
-
+var shoppingUtil = require('../../../util/shoppingUtil.js');
 Page({
 
   /**
@@ -87,7 +87,9 @@ Page({
   onGetUserInfo: function(e){
     if (!util.objectIsEmpty(e.detail.userInfo)){
       util.setUserInfo(e.detail.userInfo);
-
+      wx.showLoading({
+        title: '注册中',
+      })
       util.registerUser().then((res) =>{
         this.setData({
           avatarUrl: e.detail.userInfo.avatarUrl,
@@ -95,8 +97,15 @@ Page({
           userName: e.detail.userInfo.nickName,
           userInfoIsGetted: true
         })
+
+        shoppingUtil.loadShoppingList().then(res=>{
+        wx.hideLoading();
+        }).catch(res=>{
+          wx.hideLoading();
+        });
       }).catch(err=>{
         console.log(err);
+        wx.hideLoading();
       });
     }
   },
