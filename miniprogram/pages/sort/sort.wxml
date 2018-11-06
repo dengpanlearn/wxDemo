@@ -10,12 +10,12 @@
 
   <scroll-view  class='top-type' scroll-y='true'>
     <view class='type-item'  wx:for ='{{commodityType}}' wx:key='no'>
-      <view class='type-itme-left' id='{{item.item1._id}}' hover-class='typer-item-hover' bindtap='onEnterType'>
+      <view  id='{{item.item1._id}}'class="{{(item.item1._id== 'type_add')? 'type-item-add': 'type-item-left'}}" hover-class='typer-item-hover' bindtap='onEnterType' >
         <image class='type-icon' src='{{item.item1.fileId}}'></image>
         <text class='type-title'>{{item.item1.name}}</text>
       </view>
 
-         <view class='type-itme-right' id='{{item.item2._id}}' hover-class='typer-item-hover' bindtap='onEnterType'>
+         <view class="{{(item.item2._id== 'type_add')? 'type-item-add': 'type-item-right'}}" id='{{item.item2._id}}' hover-class='typer-item-hover' bindtap='onEnterType'>
         <image class='type-icon' src='{{item.item2.fileId}}'></image>
         <text class='type-title'>{{item.item2.name}}</text>
       </view>

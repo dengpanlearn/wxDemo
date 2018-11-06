@@ -1,7 +1,7 @@
 // miniprogram/pages/sort/sort.js
 
 var utilService = require('../../util/service.js')
-
+var util = require('../../util/util.js')
 Page({
 
   /**
@@ -24,6 +24,16 @@ Page({
     utilService.loadCommodityType(opt.currentTarget.id).then(res =>{
       if (res.length != 0){
 
+        if (util.getRight() == 'admin') {
+          let addType = {
+            _id: 'type_add',
+            fileId: '../../images/admin-add.png',
+            name: '添加新品'
+          }
+
+          res.push(addType);
+        }
+
         let commodityType = [];
         for (let row = 0; row < res.length / 2; row++) {
           let rowItem = {
@@ -35,12 +45,6 @@ Page({
           commodityType.push(rowItem);
         }
 
-        if ((res.length % 2) != 0) {
-          commodityType.push({
-            item1: res[res.length - 1],
-            item2: {}
-          });
-        }
         this.setData({
 
           commodityType: commodityType
@@ -67,6 +71,15 @@ Page({
 
         utilService.loadCommodityType(res[0]._id).then(res => {
           if (res.length != 0) {
+            if (util.getRight() == 'admin'){
+              let addType = {
+                _id: 'type_add',
+                fileId:'../../images/admin-add.png',
+                name:'添加新品'
+              }
+
+              res.push(addType);
+            }
 
             let commodityType=[];
               for (let row = 0; row < res.length/2; row++){
@@ -79,12 +92,7 @@ Page({
                 commodityType.push(rowItem);
               }
 
-              if ((res.length % 2) != 0){
-                commodityType.push({
-                  item1: res[res.length -1],
-                  item2:{}
-                });
-              }
+
             this.setData({
               commodityType: commodityType
             })
@@ -97,11 +105,16 @@ Page({
   },
 
   onEnterType:function(opt){
+
+    if (opt.currentTarget.id == 'type_add'){
+
+    }else{
     let urlNext = '../commodityList/commodityList?typeId=' + opt.currentTarget.id;
     urlNext = urlNext + '&classId=' + this.data.curClassId;
     wx.navigateTo({
       url: urlNext,
     })
+    }
   },
 
   /**

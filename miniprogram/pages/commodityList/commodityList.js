@@ -15,7 +15,8 @@ Page({
 
     commodityList:[
     ],
-    currentCommodity:''
+    currentCommodity:'',
+    isAdmin: false
   },
 
   onSelectType:function(opt){
@@ -88,6 +89,10 @@ Page({
     let classId = this.data.curClassId;
     let typeId = this.data.currentTypeId;
 
+    wx.showLoading({
+      title: '',
+    })
+
     utilService.loadCommodityType(classId).then(res => {
       console.log(res);
       this.setData({
@@ -95,17 +100,29 @@ Page({
         currentTypeId: typeId
       });
 
-      utilService.loadCommodityByType(typeId).then(res=>{
+      utilService.loadCommodityByType(typeId).then(res=>{    
+
+        let isAdmin = util.getIsLogged();
+      
         this.setData({
-          commodityList:res
+          commodityList:res,
+          isAdmin: isAdmin
         });
+        wx.hideLoading();
+
       }, res=>{
         this.setData({
           commodityList:[]
         });
+        wx.hideLoading();
       })
 
+    }).catch(res=>{
+      wx.hideLoading();
     }); 
+
+
+
   },
 
   /**

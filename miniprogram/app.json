@@ -39,17 +39,18 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/shopping/shopping",
-        "iconPath": "images/main/ic_menu_shoping_nor.png",
-        "selectedIconPath": "images/main/ic_menu_shoping_pressed.png",
-        "text": "购物车"
-      },
-      {
         "pagePath": "pages/sort/sort",
         "iconPath": "images/main/ic_menu_sort_nor.png",
         "selectedIconPath": "images/main/ic_menu_sort_pressed.png",
         "text": "分类"
       },
+      {
+        "pagePath": "pages/shopping/shopping",
+        "iconPath": "images/main/ic_menu_shoping_nor.png",
+        "selectedIconPath": "images/main/ic_menu_shoping_pressed.png",
+        "text": "购物车"
+      },
+
       {
         "pagePath": "pages/collect/collect",
         "iconPath": "images/main/icon_collect.png",
