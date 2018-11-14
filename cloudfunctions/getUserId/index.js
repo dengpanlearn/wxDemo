@@ -28,6 +28,7 @@ cloud.init({
 // 云函数入口函数
 exports.main = async (event, context) => {
   let {
+    appName,
     secret,
     code,
     userInfo
@@ -38,8 +39,9 @@ exports.main = async (event, context) => {
   /**从数据库获取用户userInfo*/
 
   try {
+    let userDbName = appName+'-user';
     const db = cloud.database();
-    const collection = db.collection('demo-user');
+    const collection = db.collection(userDbName);
     let result = await collection.where({
       openId: openId
     }).get();

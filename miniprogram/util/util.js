@@ -37,6 +37,7 @@ function registerUser(){
     wx.cloud.callFunction({
       name: 'registerUser',
       data: {
+        appName:'demo',
         userName: userInfo.nickName,
         gender: userInfo.gender,
         city: userInfo.city,
@@ -70,6 +71,7 @@ function loadWxUserInfo(){
     wx.cloud.callFunction({
       name: 'getUserId',
       data: {
+        appName: 'demo',
         secret: 'f6a008cab77ada27c16a9d2b0ab6c9be',
         code: 'appCode'
       }
