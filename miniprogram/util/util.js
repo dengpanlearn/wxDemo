@@ -1,6 +1,7 @@
 
 var userInfo= { };
 var logged= false;
+var right = 'custom'
 var appCode = '';
 
 function objectIsEmpty(obj){
@@ -12,6 +13,10 @@ function objectIsEmpty(obj){
 }
 function getIsLogged() {
   return logged;
+}
+
+function getRight(){
+  return right;
 }
 
 function getUserInfo() {
@@ -32,6 +37,7 @@ function registerUser(){
     wx.cloud.callFunction({
       name: 'registerUser',
       data: {
+        appName:'demo',
         userName: userInfo.nickName,
         gender: userInfo.gender,
         city: userInfo.city,
@@ -65,6 +71,7 @@ function loadWxUserInfo(){
     wx.cloud.callFunction({
       name: 'getUserId',
       data: {
+        appName: 'demo',
         secret: 'f6a008cab77ada27c16a9d2b0ab6c9be',
         code: 'appCode'
       }
@@ -79,6 +86,8 @@ function loadWxUserInfo(){
         userInfo.city = serverUserInfo.city;
         userInfo.language = serverUserInfo.language;
         userInfo.avatarUrl = serverUserInfo.avatarUrl;
+        right = serverUserInfo.right;
+        logged = true;
         resovle();
       }else{
         reject();
@@ -172,5 +181,6 @@ module.exports = {
   loadWxUserInfo,
   objectIsEmpty,
   registerUser,
-  throttle
+  throttle,
+  getRight
 }

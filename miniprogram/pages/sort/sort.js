@@ -1,7 +1,7 @@
 // miniprogram/pages/sort/sort.js
 
 var utilService = require('../../util/service.js')
-
+var util = require('../../util/util.js')
 Page({
 
   /**
@@ -23,10 +23,31 @@ Page({
 
     utilService.loadCommodityType(opt.currentTarget.id).then(res =>{
       if (res.length != 0){
-        console.log(res);
+
+        if (util.getRight() == 'admin') {
+          let addType = {
+            _id: 'type_add',
+            fileId: '../../images/admin-add.png',
+            name: '添加新品'
+          }
+
+          res.push(addType);
+        }
+
+        let commodityType = [];
+        for (let row = 0; row < res.length / 2; row++) {
+          let rowItem = {
+            no: row,
+            item1: res[row * 2],
+            item2: res[row * 2 + 1]
+          }
+
+          commodityType.push(rowItem);
+        }
+
         this.setData({
 
-        commodityType: res
+          commodityType: commodityType
        })
       } else {
         this.setData({
@@ -50,9 +71,30 @@ Page({
 
         utilService.loadCommodityType(res[0]._id).then(res => {
           if (res.length != 0) {
-      
+            if (util.getRight() == 'admin'){
+              let addType = {
+                _id: 'type_add',
+                fileId:'../../images/admin-add.png',
+                name:'添加新品'
+              }
+
+              res.push(addType);
+            }
+
+            let commodityType=[];
+              for (let row = 0; row < res.length/2; row++){
+                let rowItem = {
+                  no: row,
+                  item1 : res[row*2],
+                  item2: res[row*2+1] 
+                }
+
+                commodityType.push(rowItem);
+              }
+
+
             this.setData({
-              commodityType: res
+              commodityType: commodityType
             })
           }
         })
@@ -63,11 +105,16 @@ Page({
   },
 
   onEnterType:function(opt){
+
+    if (opt.currentTarget.id == 'type_add'){
+
+    }else{
     let urlNext = '../commodityList/commodityList?typeId=' + opt.currentTarget.id;
     urlNext = urlNext + '&classId=' + this.data.curClassId;
     wx.navigateTo({
       url: urlNext,
     })
+    }
   },
 
   /**

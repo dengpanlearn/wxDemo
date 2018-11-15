@@ -6,6 +6,7 @@ cloud.init()
 // 云函数入口函数
 exports.main = async (event, context) => {
   let{
+    appName,
     userName,
     gender,
     city,
@@ -18,9 +19,9 @@ exports.main = async (event, context) => {
 
   let openId = userInfo.openId;
   let appId = userInfo.appId;
-
+  let userDbName = appName+'-user';
   const db = cloud.database();
-  const collection = db.collection('demo-user');
+  const collection = db.collection(userDbName);
 
   try{
     let result = await collection.where({
@@ -48,6 +49,7 @@ exports.main = async (event, context) => {
           appId:appId,
           avatarUrl: avatarUrl,
           language: language,
+          right:'custom',
           createTime: db.serverDate()
         }
       });

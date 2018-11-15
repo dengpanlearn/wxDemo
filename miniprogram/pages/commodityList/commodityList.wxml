@@ -21,6 +21,12 @@
           </view>
         </view>
       </view>
+
+      <view wx:if = '{{isAdmin}}' class='add-commodity'>
+        <image class='add-commodity-icon' src='../../images/admin-add.png'></image>
+        <text class='add-commodity-title'>添加新品</text>
+
+      </view>
    
   </scroll-view> 
  
