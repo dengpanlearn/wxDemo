@@ -2,6 +2,7 @@
 
 var util = require('../../util/util.js');
 var utilShopping = require('../../util/shoppingUtil.js');
+const app = getApp();
 Page({
 
   /**
@@ -29,24 +30,20 @@ Page({
       mask:true
     })
 
-
-
-
-   util.loadWxUserInfo().then((res) => {
+    util.loadWxUserInfo(app.globalData.appName).then((res) => {
       console.info('load wx user info ok');
-     utilShopping.loadShoppingList().then(res=>{
-       wx.hideLoading();
-     }).catch(res=>{
-       wx.hideLoading();
-     });
+      utilShopping.loadShoppingList().then(res => {
+        wx.hideLoading();
+      }).catch(res => {
+        wx.hideLoading();
+      });
 
-    },(res) => {
+    }, (res) => {
       console.info('load wx user info error ${res}');
       console.log(res);
       utilShopping.setShoppingListLoadStatus(true);
       wx.hideLoading();
     })
- 
   },
 
   /**

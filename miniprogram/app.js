@@ -9,8 +9,11 @@ App({
         env:'clouddemo-480e99',
         traceUser: true,
       })
+
     }
 
-    this.globalData = {}
+    this.globalData = {
+      appName: 'demo',
+    }
   }
 })

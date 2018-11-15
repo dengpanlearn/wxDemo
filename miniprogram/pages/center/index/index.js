@@ -2,6 +2,7 @@
 var util = require('../../../util/util.js');
 var utilService = require('../../../util/service.js');
 var shoppingUtil = require('../../../util/shoppingUtil.js');
+const app = getApp();
 Page({
 
   /**
@@ -90,7 +91,9 @@ Page({
       wx.showLoading({
         title: '注册中',
       })
-      util.registerUser().then((res) =>{
+
+     
+      util.registerUser(app.globalData.appName).then((res) =>{
         this.setData({
           avatarUrl: e.detail.userInfo.avatarUrl,
           userInfo: e.detail.userInfo,

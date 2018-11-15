@@ -1,10 +1,10 @@
 
-var userInfo= { };
-var logged= false;
+var userInfo = {};
+var logged = false;
 var right = 'custom'
 var appCode = '';
 
-function objectIsEmpty(obj){
+function objectIsEmpty(obj) {
   for (var key in obj) {
     return false;
   }
@@ -15,7 +15,7 @@ function getIsLogged() {
   return logged;
 }
 
-function getRight(){
+function getRight() {
   return right;
 }
 
@@ -32,12 +32,12 @@ function getIsUpdateInfo() {
 }
 
 
-function registerUser(){
-  return new Promise(function(resolve, reject){
+function registerUser(appName) {
+  return new Promise(function (resolve, reject) {
     wx.cloud.callFunction({
       name: 'registerUser',
       data: {
-        appName:'demo',
+        appName: appName,
         userName: userInfo.nickName,
         gender: userInfo.gender,
         city: userInfo.city,
@@ -48,13 +48,13 @@ function registerUser(){
       }
     }).then(res => {
       console.log(res.result);
-      if (res.result.code == 0) { 
+      if (res.result.code == 0) {
         console.log(res.result.data);
         logged = true;
         resolve(logged);
-      }else {
+      } else {
         reject(logged);
-      } 
+      }
     }).catch(res => {
       reject(res);
     })
@@ -65,17 +65,17 @@ function setUserInfo(info) {
   userInfo = info;
 }
 // get wx userInfo
-function loadWxUserInfo(){
+function loadWxUserInfo(appName) {
 
-  return new Promise(function (resovle, reject){
+  return new Promise(function (resovle, reject) {
     wx.cloud.callFunction({
       name: 'getUserId',
       data: {
-        appName: 'demo',
+        appName: appName,
         secret: 'f6a008cab77ada27c16a9d2b0ab6c9be',
         code: 'appCode'
       }
-    }).then(res =>{
+    }).then(res => {
       if (res.result.code == 0) {
         console.log(res.result.data);
         let serverUserInfo = res.result.data[0];
@@ -89,16 +89,16 @@ function loadWxUserInfo(){
         right = serverUserInfo.right;
         logged = true;
         resovle();
-      }else{
+      } else {
         reject();
       }
-    }).catch(res=>{
+    }).catch(res => {
       reject(res);
     });
   });
-  
-    
-           
+
+
+
   /*通过云函数可以直接获取到openId,暂时不用获取unionId
   return new Promise(function(resovle, reject){
     wx.login({
@@ -163,7 +163,7 @@ function throttle(fn, gapTime) {
 
   let _lastTime = null
   return function () {
-   
+
     let _nowTime = + new Date()
     if (_nowTime - _lastTime > gapTime || !_lastTime) {
       fn.apply(this, arguments);
