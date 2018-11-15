@@ -92,6 +92,12 @@ Page({
       this.setData({
         defaultAddress: res
       });
+    }).catch(res=>{
+      tmpAddress.detailInfo = '请选择收货地址'
+      this.setData({
+        defaultAddress: tmpAddress,
+
+      })
     });
 
     setInterval(res=>{

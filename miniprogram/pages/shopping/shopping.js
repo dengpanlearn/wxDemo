@@ -251,11 +251,19 @@ Page({
    */
   onShow: function () {
     utilService.getDefaultAddr().then(res => {
-     
+     console.log(res);
       this.setData({
         defaultAddress: res
       });
-    }).catch(res=>wx.hideLoading());
+    }).catch(res=>{
+      let tmpAddress = {};
+      tmpAddress.detailInfo = '请选择收货地址',
+        this.setData({
+        defaultAddress: tmpAddress,
+         
+        })
+    //  wx.hideLoading();
+    });
    
 
     if (!utilShopping.getShoppingListLoadStatus()){
